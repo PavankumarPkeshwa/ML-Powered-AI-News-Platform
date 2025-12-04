@@ -1,0 +1,56 @@
+nohup: ignoring input
+INFO:     Started server process [57764]
+INFO:     Waiting for application startup.
+INFO:app.main:🚀 Starting GenAI News Service...
+INFO:app.main:📰 Initializing automatic news collection...
+INFO:app.main:✅ Service ready! News collection running in background.
+INFO:app.auto_collector:🌟 Initializing News Collection System...
+INFO:app.auto_collector:📝 Populating with sample articles...
+/workspaces/ML-Powered-AI-News-Platform/GenAI-with-Agentic-AI/app/rag/embedder.py:30: LangChainDeprecationWarning: The class `HuggingFaceEmbeddings` was deprecated in LangChain 0.2.2 and will be removed in 1.0. An updated version of the class exists in the `langchain-huggingface package and should be used instead. To use it run `pip install -U `langchain-huggingface` and import as `from `langchain_huggingface import HuggingFaceEmbeddings``.
+  embedding_model = HuggingFaceEmbeddings(
+INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+/workspaces/ML-Powered-AI-News-Platform/GenAI-with-Agentic-AI/app/rag/vectordb.py:26: LangChainDeprecationWarning: The class `Chroma` was deprecated in LangChain 0.2.9 and will be removed in 1.0. An updated version of the class exists in the `langchain-chroma package and should be used instead. To use it run `pip install -U `langchain-chroma` and import as `from `langchain_chroma import Chroma``.
+  vectordb = Chroma(
+INFO:chromadb.telemetry.product.posthog:Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+/workspaces/ML-Powered-AI-News-Platform/GenAI-with-Agentic-AI/app/auto_collector.py:459: LangChainDeprecationWarning: Since Chroma 0.4.x the manual persistence method is no longer supported as docs are automatically persisted.
+  vectordb.persist()
+INFO:app.auto_collector:✅ Successfully added 18 sample articles!
+INFO:app.auto_collector:✅ Initialized with 18 sample articles
+INFO:app.auto_collector:🚀 Starting automated news collection...
+INFO:app.auto_collector:🔍 Collecting Technology news...
+INFO:app.auto_collector:📰 Collecting from https://techcrunch.com/ (Technology)
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+Device set to use cpu
+Token indices sequence length is longer than the specified maximum sequence length for this model (821 > 512). Running this sequence through the model will result in indexing errors
+🔄 Loading local model: google/flan-t5-base (first time may take a few minutes)...
+✅ Model loaded successfully!
+INFO:     127.0.0.1:36072 - "POST /chat/message HTTP/1.1" 200 OK
+INFO:app.auto_collector:✅ Successfully collected from https://techcrunch.com/
+INFO:app.auto_collector:📊 Technology: 1 articles collected
+INFO:app.auto_collector:🔍 Collecting Business news...
+INFO:app.auto_collector:📰 Collecting from https://www.cnbc.com/business/ (Business)
+WARNING:app.auto_collector:⚠️  Failed to collect from https://www.cnbc.com/business/: reject
+INFO:app.auto_collector:📊 Business: 0 articles collected
+INFO:app.auto_collector:🔍 Collecting Science news...
+INFO:app.auto_collector:📰 Collecting from https://www.scientificamerican.com/ (Science)
+WARNING:app.auto_collector:⚠️  Failed to collect from https://www.scientificamerican.com/: reject
+INFO:app.auto_collector:📊 Science: 0 articles collected
+INFO:app.auto_collector:🔍 Collecting Health news...
+INFO:app.auto_collector:📰 Collecting from https://www.healthline.com/ (Health)
+INFO:     127.0.0.1:51618 - "POST /chat/message HTTP/1.1" 200 OK
+WARNING:app.auto_collector:⚠️  Failed to collect from https://www.healthline.com/: reject
+INFO:app.auto_collector:📊 Health: 0 articles collected
+INFO:app.auto_collector:🔍 Collecting Sports news...
+INFO:app.auto_collector:📰 Collecting from https://www.espn.com/ (Sports)
+INFO:     127.0.0.1:51510 - "POST /chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37188 - "GET /news/fetch?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42414 - "GET /news/fetch?limit=100 HTTP/1.1" 200 OK
+WARNING:app.auto_collector:⚠️  Failed to collect from https://www.espn.com/: reject
+INFO:app.auto_collector:📊 Sports: 0 articles collected
+INFO:app.auto_collector:🔍 Collecting Entertainment news...
+INFO:app.auto_collector:📰 Collecting from https://variety.com/ (Entertainment)
+INFO:app.auto_collector:✅ Successfully collected from https://variety.com/
+INFO:app.auto_collector:📊 Entertainment: 1 articles collected
+INFO:app.auto_collector:🎉 Collection complete! Total articles: 2
+INFO:app.auto_collector:🎊 Real news collection complete! 2 articles added
