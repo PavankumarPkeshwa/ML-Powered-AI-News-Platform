@@ -37,7 +37,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="bg-white">
+    <section className="bg-white dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid lg:grid-cols-12 gap-8">
           {/* Featured Article */}
@@ -86,8 +86,8 @@ export default function HeroSection() {
 
           {/* Trending Articles Sidebar */}
           <div className="lg:col-span-4">
-            <div className="bg-gray-50 rounded-xl p-6">
-              <h3 className="text-xl font-bold mb-6 flex items-center">
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 border border-transparent dark:border-gray-700">
+              <h3 className="text-xl font-bold mb-6 flex items-center dark:text-white">
                 <Flame className="h-5 w-5 text-orange-500 mr-2" />
                 Trending Now
               </h3>

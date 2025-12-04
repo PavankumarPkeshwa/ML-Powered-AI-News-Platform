@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Search, Menu, X } from "lucide-react";
+import { Search, Menu, X, Newspaper } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SearchOverlay from "./search-overlay";
+import { ThemeToggle } from "./theme-toggle";
 import { categories } from "@shared/schema";
 
 export default function Header() {
@@ -12,19 +13,19 @@ export default function Header() {
 
   const getCategoryColor = (category: string) => {
     const colorMap: Record<string, string> = {
-      Technology: "text-purple-600 hover:text-purple-700 hover:bg-purple-50",
-      Business: "text-blue-600 hover:text-blue-700 hover:bg-blue-50",
-      Science: "text-cyan-600 hover:text-cyan-700 hover:bg-cyan-50",
-      Health: "text-green-600 hover:text-green-700 hover:bg-green-50",
-      Sports: "text-orange-600 hover:text-orange-700 hover:bg-orange-50",
-      Entertainment: "text-pink-600 hover:text-pink-700 hover:bg-pink-50",
+      Technology: "text-purple-600 hover:text-purple-700 hover:bg-purple-50 dark:text-purple-400 dark:hover:bg-purple-950",
+      Business: "text-blue-600 hover:text-blue-700 hover:bg-blue-50 dark:text-blue-400 dark:hover:bg-blue-950",
+      Science: "text-cyan-600 hover:text-cyan-700 hover:bg-cyan-50 dark:text-cyan-400 dark:hover:bg-cyan-950",
+      Health: "text-green-600 hover:text-green-700 hover:bg-green-50 dark:text-green-400 dark:hover:bg-green-950",
+      Sports: "text-orange-600 hover:text-orange-700 hover:bg-orange-50 dark:text-orange-400 dark:hover:bg-orange-950",
+      Entertainment: "text-pink-600 hover:text-pink-700 hover:bg-pink-50 dark:text-pink-400 dark:hover:bg-pink-950",
     };
-    return colorMap[category] || "text-gray-700 hover:text-blue-600 hover:bg-blue-50";
+    return colorMap[category] || "text-gray-700 hover:text-blue-600 hover:bg-blue-50 dark:text-gray-300 dark:hover:bg-gray-800";
   };
 
   return (
     <>
-      <header className="bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200/50 sticky top-0 z-50">
+      <header className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-gray-200/50 dark:border-gray-800 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
@@ -61,21 +62,23 @@ export default function Header() {
               ))}
             </nav>
 
-            {/* Search and Mobile Menu */}
-            <div className="flex items-center space-x-4">
+            {/* Search, Theme Toggle and Mobile Menu */}
+            <div className="flex items-center space-x-2">
               <Button
                 variant="ghost"
-                size="sm"
+                size="icon"
                 onClick={() => setIsSearchOpen(true)}
-                className="text-gray-500 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 rounded-full"
+                className="text-gray-500 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-gray-800 transition-all duration-200 rounded-full"
               >
                 <Search className="h-5 w-5" />
               </Button>
               
+              <ThemeToggle />
+              
               <Button
                 variant="ghost"
-                size="sm"
-                className="md:hidden text-gray-500 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 rounded-full"
+                size="icon"
+                className="md:hidden text-gray-500 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-gray-800 transition-all duration-200 rounded-full"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
                 {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}

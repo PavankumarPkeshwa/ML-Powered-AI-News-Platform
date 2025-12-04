@@ -21,11 +21,10 @@ conversation_memory = {}
 @router.post("/message")
 def chat_message(chat: ChatMessage) -> ChatResponse:
     """
-    AI Chatbot endpoint using RAG to answer questions about news articles
+    AI Chatbot endpoint using RAG to answer questions about news articles.
+    Uses retrieval-based responses from vectorDB for faster, more accurate answers.
     """
     try:
-        # Get RAG chain
-        rag_chain = get_rag_chain()
         vectordb = get_vector_db()
         
         # Get conversation ID or create new one
@@ -34,30 +33,93 @@ def chat_message(chat: ChatMessage) -> ChatResponse:
         # Get conversation history
         history = conversation_memory.get(conv_id, [])
         
-        # Build context from history
-        context = "\n".join([f"User: {h['user']}\nAssistant: {h['assistant']}" for h in history[-3:]])
+        # Search for relevant news articles
+        docs = vectordb.similarity_search(chat.message, k=10)
         
-        # Augment query with context if available
-        query = chat.message
-        if context:
-            query = f"Previous conversation:\n{context}\n\nCurrent question: {chat.message}"
-        
-        # Use RAG chain to get answer
-        try:
-            # Try the new invoke API
-            result = rag_chain.invoke(query)
-            if isinstance(result, dict):
-                answer = result.get("result", str(result))
+        if not docs:
+            answer = "I don't have any information about that topic in my current news database. Could you ask about Technology, Business, Science, Health, Sports, or Entertainment news?"
+            sources = []
+        else:
+            # Build answer from retrieved documents
+            articles_info = []
+            sources = []
+            seen_titles = set()
+            seen_content = set()
+            
+            for doc in docs:
+                title = doc.metadata.get("title", "").strip()
+                content = doc.page_content.strip()
+                
+                # Skip if no meaningful title
+                if not title or len(title) < 10:
+                    continue
+                
+                # Skip duplicates by title (exact match)
+                if title in seen_titles:
+                    continue
+                
+                # Skip duplicates by content (first 150 chars as fingerprint)
+                content_fingerprint = content[:150].lower().replace(' ', '')
+                if content_fingerprint in seen_content:
+                    continue
+                
+                # Filter out navigation/scraped HTML junk
+                junk_indicators = [
+                    "Latest AI Amazon Apps Biotech",
+                    "Subscribe",
+                    "Sign in",
+                    "Click here",
+                    len(content) < 100,  # Too short
+                ]
+                
+                if any(indicator if isinstance(indicator, bool) else indicator in content[:150] 
+                       for indicator in junk_indicators):
+                    continue
+                
+                # Extract clean excerpt (first 2-3 sentences)
+                sentences = [s.strip() + '.' for s in content.split('.') if len(s.strip()) > 30]
+                if sentences:
+                    excerpt = ' '.join(sentences[:2])[:280]
+                else:
+                    excerpt = content[:280]
+                
+                # Only add if we have meaningful, unique content
+                if len(excerpt) > 80:
+                    seen_titles.add(title)
+                    seen_content.add(content_fingerprint)
+                    
+                    source = doc.metadata.get("source", "Unknown")
+                    category = doc.metadata.get("category", "")
+                    
+                    article_text = f"📰 **{title}**"
+                    if category:
+                        article_text += f" _{category}_"
+                    article_text += f"\n\n{excerpt}"
+                    if not excerpt.endswith('.'):
+                        article_text += "..."
+                    
+                    articles_info.append(article_text)
+                    sources.append(source)
+                
+                if len(articles_info) >= 3:
+                    break
+            
+            # Create a natural answer
+            question_lower = chat.message.lower()
+            
+            if not articles_info:
+                answer = "I found some articles but couldn't extract clear content. Could you try asking about a specific topic like AI, health, sports, or business?"
+            elif any(word in question_lower for word in ["latest", "recent", "new", "what"]):
+                answer = f"Here are the latest news articles I found:\n\n" + "\n\n".join(articles_info)
+            elif "tell me about" in question_lower or "about" in question_lower:
+                topic = chat.message.lower().replace("tell me about", "").replace("about", "").strip()
+                answer = f"Here's what I found about {topic}:\n\n" + "\n\n".join(articles_info)
             else:
-                answer = str(result)
-        except AttributeError:
-            # Fallback to legacy __call__ if invoke doesn't exist
-            result = rag_chain(query)
-            answer = result.get("result", str(result))
-        
-        # Get source documents for context
-        docs = vectordb.similarity_search(chat.message, k=3)
-        sources = [doc.metadata.get("source", "Unknown") for doc in docs]
+                answer = f"I found these relevant articles:\n\n" + "\n\n".join(articles_info)
+            
+            # Add helpful suffix
+            if articles_info:
+                answer += "\n\n💬 Would you like to know more about any specific topic?"
         
         # Save to conversation history
         if conv_id not in conversation_memory:
@@ -79,6 +141,8 @@ def chat_message(chat: ChatMessage) -> ChatResponse:
         )
     
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         return ChatResponse(
             response=f"I'm sorry, I encountered an error: {str(e)}. Please try again.",
             conversation_id=chat.conversation_id or "error",

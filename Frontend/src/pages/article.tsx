@@ -41,12 +41,12 @@ export default function ArticlePage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         <Header />
         <main className="py-8">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <Skeleton className="w-24 h-10 mb-6" />
-            <div className="bg-white rounded-xl shadow-sm overflow-hidden">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden border border-transparent dark:border-gray-700">
               <Skeleton className="w-full h-64 md:h-96" />
               <div className="p-8 space-y-4">
                 <Skeleton className="w-20 h-6 rounded-full" />
@@ -73,12 +73,12 @@ export default function ArticlePage() {
 
   if (error || !article) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         <Header />
         <main className="py-12">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">Article Not Found</h1>
-            <p className="text-gray-600 mb-6">The article you're looking for doesn't exist.</p>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Article Not Found</h1>
+            <p className="text-gray-600 dark:text-gray-400 mb-6">The article you're looking for doesn't exist.</p>
             <Link href="/">
               <Button>
                 <ArrowLeft className="h-4 w-4 mr-2" />
@@ -93,7 +93,7 @@ export default function ArticlePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <Header />
       <main className="py-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -106,7 +106,7 @@ export default function ArticlePage() {
           </Link>
 
           {/* Article Content */}
-          <article className="bg-white rounded-xl shadow-sm overflow-hidden">
+          <article className="bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden border border-transparent dark:border-gray-700">
             {/* Hero Image */}
             <img
               src={article.imageUrl}
@@ -131,16 +131,16 @@ export default function ArticlePage() {
                 </div>
               </div>
 
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
                 {article.title}
               </h1>
 
-              <p className="text-xl text-gray-600 mb-6 leading-relaxed">
+              <p className="text-xl text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
                 {article.excerpt}
               </p>
 
               {/* Article Meta */}
-              <div className="flex flex-wrap items-center space-x-6 text-sm text-gray-500 mb-8 pb-8 border-b">
+              <div className="flex flex-wrap items-center space-x-6 text-sm text-gray-500 dark:text-gray-400 mb-8 pb-8 border-b dark:border-gray-700">
                 <div className="flex items-center space-x-2">
                   <User className="h-4 w-4" />
                   <span>{article.author}</span>

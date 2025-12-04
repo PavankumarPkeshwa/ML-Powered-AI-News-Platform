@@ -29,7 +29,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <Header />
       <main>
         <HeroSection />
@@ -38,7 +38,7 @@ export default function Home() {
         <section className="py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center mb-8">
-              <h2 className="text-2xl font-bold">Latest Articles</h2>
+              <h2 className="text-2xl font-bold dark:text-white">Latest Articles</h2>
               <div className="flex items-center space-x-4">
                 <Select value={sortBy} onValueChange={setSortBy}>
                   <SelectTrigger className="w-[180px]">
