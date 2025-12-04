@@ -1,4 +1,5 @@
 #!/bin/bash
+# Run this from project root: ./scripts/start-all.sh
 
 # Colors for output
 GREEN='\033[0;32m'
