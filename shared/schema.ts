@@ -1,4 +1,4 @@
-export const categories = ["Technology", "Lifestyle", "Sports", "Fitness", "Food", "Travel"] as const;
+export const categories = ["Technology", "Business", "Science", "Health", "Sports", "Entertainment"] as const;
 export type Category = typeof categories[number];
 
 export type InsertArticle = {

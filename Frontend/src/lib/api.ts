@@ -44,6 +44,30 @@ export const api = {
     return response.json();
   },
 
+  // ─── Chatbot APIs ─────────────────────────────────────
+
+  sendChatMessage: async (message: string, conversationId?: string): Promise<{
+    response: string;
+    conversation_id: string;
+    sources: string[];
+  }> => {
+    const response = await apiRequest("POST", "/api/chat/message", { 
+      message, 
+      conversation_id: conversationId 
+    });
+    return response.json();
+  },
+
+  clearChatConversation: async (conversationId: string): Promise<{ message: string }> => {
+    const response = await apiRequest("DELETE", `/api/chat/conversation/${conversationId}`);
+    return response.json();
+  },
+
+  getChatbotHealth: async (): Promise<{ status: string; message: string }> => {
+    const response = await apiRequest("GET", "/api/chat/health");
+    return response.json();
+  },
+
   // ─── Admin APIs ──────────────────────────────────────
 
   getAdminStatus: async (): Promise<{

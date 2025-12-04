@@ -12,12 +12,12 @@ export default function Header() {
 
   const getCategoryColor = (category: string) => {
     const colorMap: Record<string, string> = {
-      Technology: "text-tech hover:text-purple-700 hover:bg-purple-50",
-      Lifestyle: "text-lifestyle hover:text-pink-700 hover:bg-pink-50",
-      Sports: "text-sports hover:text-green-700 hover:bg-green-50",
-      Fitness: "text-fitness hover:text-orange-700 hover:bg-orange-50",
-      Food: "text-food hover:text-red-700 hover:bg-red-50",
-      Travel: "text-travel hover:text-teal-700 hover:bg-teal-50",
+      Technology: "text-purple-600 hover:text-purple-700 hover:bg-purple-50",
+      Business: "text-blue-600 hover:text-blue-700 hover:bg-blue-50",
+      Science: "text-cyan-600 hover:text-cyan-700 hover:bg-cyan-50",
+      Health: "text-green-600 hover:text-green-700 hover:bg-green-50",
+      Sports: "text-orange-600 hover:text-orange-700 hover:bg-orange-50",
+      Entertainment: "text-pink-600 hover:text-pink-700 hover:bg-pink-50",
     };
     return colorMap[category] || "text-gray-700 hover:text-blue-600 hover:bg-blue-50";
   };

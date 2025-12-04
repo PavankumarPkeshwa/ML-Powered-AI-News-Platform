@@ -1,9 +1,0 @@
-apscheduler
-fastapi
-scikit-learn
-joblib
-pydantic
-uvicorn
-pandas
-feedparser
-pymongo
