@@ -2,6 +2,18 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import asyncio
 import logging
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Verify HuggingFace token is loaded
+import os
+hf_token = os.getenv("HUGGINGFACE_TOKEN")
+if hf_token:
+    print(f"✅ HuggingFace token loaded: {hf_token[:10]}...")
+else:
+    print("⚠️ No HuggingFace token found - will use free models only")
 
 # Importing our route modules
 # Each route file will contain endpoints for RAG, Agents, Scraper
@@ -41,15 +53,16 @@ app.include_router(chat_routes.router)
 async def startup_event():
     """
     Run on application startup.
-    Automatically populates the database with news articles.
+    Automatically collects REAL news from internet using AI agents.
     """
     logger.info("🚀 Starting GenAI News Service...")
-    logger.info("📰 Initializing automatic news collection...")
+    logger.info("📰 Initializing AI-powered news collection...")
+    logger.info("🤖 AI Agents: News Scraper → Validator → VectorDB Storage")
     
-    # Run news collection in background
-    asyncio.create_task(initialize_news_collection(use_samples=True))
+    # Run REAL news collection with agents (samples only as last resort)
+    asyncio.create_task(initialize_news_collection(use_samples=False))
     
-    logger.info("✅ Service ready! News collection running in background.")
+    logger.info("✅ Service ready! AI agents collecting real news in background.")
 
 
 # Root sanity check

@@ -1,13 +1,19 @@
 """
 news_agent.py
-Scraper + LLM-based cleaner.
+Scraper + LLM-based cleaner with RSS feed support and article discovery.
 """
 import requests
 from bs4 import BeautifulSoup
+from typing import List, Dict
+import feedparser
+from urllib.parse import urljoin, urlparse
+import logging
 
 # use local LLM (no API token required)
 from langchain_core.prompts import PromptTemplate
 from app.utils.local_llm import LocalLLM
+
+logger = logging.getLogger(__name__)
 
 def _get_llm():
     """
@@ -23,6 +29,86 @@ def fetch_url(url: str, timeout: int = 10) -> str:
     resp = requests.get(url, headers=headers, timeout=timeout)
     resp.raise_for_status()
     return resp.text
+
+
+def parse_rss_feed(feed_url: str, limit: int = 10) -> List[str]:
+    """
+    Parse RSS feed and extract article URLs.
+    Returns list of article URLs.
+    """
+    try:
+        feed = feedparser.parse(feed_url)
+        article_urls = []
+        
+        for entry in feed.entries[:limit]:
+            if hasattr(entry, 'link'):
+                article_urls.append(entry.link)
+        
+        logger.info(f"📰 Found {len(article_urls)} articles from RSS feed")
+        return article_urls
+    except Exception as e:
+        logger.error(f"❌ RSS parsing error: {str(e)}")
+        return []
+
+
+def discover_article_links(homepage_url: str, limit: int = 10) -> List[str]:
+    """
+    Discover article links from a homepage.
+    Returns list of article URLs.
+    """
+    try:
+        html = fetch_url(homepage_url)
+        soup = BeautifulSoup(html, "html.parser")
+        
+        article_urls = set()
+        base_domain = urlparse(homepage_url).netloc
+        
+        # Common article link patterns
+        selectors = [
+            'article a[href]',
+            'a.article-link',
+            'a.post-link',
+            'a[href*="/article/"]',
+            'a[href*="/story/"]',
+            'a[href*="/news/"]',
+            'a[href*="/post/"]',
+            'h2 a[href]',
+            'h3 a[href]',
+            '.story a[href]',
+            '.article a[href]',
+        ]
+        
+        for selector in selectors:
+            links = soup.select(selector)
+            for link in links:
+                href = link.get('href')
+                if href:
+                    # Make absolute URL
+                    full_url = urljoin(homepage_url, href)
+                    
+                    # Filter: same domain, looks like article (has path)
+                    parsed = urlparse(full_url)
+                    if parsed.netloc == base_domain and len(parsed.path) > 1:
+                        # Exclude common non-article pages
+                        excluded = ['/tag/', '/category/', '/author/', '/page/', 
+                                  '/search/', '/login', '/signup', '/about', 
+                                  '/contact', '/privacy', '/terms']
+                        if not any(ex in full_url.lower() for ex in excluded):
+                            article_urls.add(full_url)
+                    
+                    if len(article_urls) >= limit:
+                        break
+            
+            if len(article_urls) >= limit:
+                break
+        
+        result = list(article_urls)[:limit]
+        logger.info(f"📰 Discovered {len(result)} article links from {homepage_url}")
+        return result
+        
+    except Exception as e:
+        logger.error(f"❌ Article discovery error: {str(e)}")
+        return []
 
 def extract_main_text_from_html(html: str) -> str:
     soup = BeautifulSoup(html, "html.parser")

@@ -1,229 +1,159 @@
 nohup: ignoring input
-INFO:     Started server process [24506]
+INFO:     Started server process [24542]
 INFO:     Waiting for application startup.
 INFO:app.main:🚀 Starting GenAI News Service...
-INFO:app.main:📰 Initializing automatic news collection...
-INFO:app.main:✅ Service ready! News collection running in background.
-INFO:app.auto_collector:🌟 Initializing News Collection System...
-INFO:app.auto_collector:📝 Populating with sample articles...
-/workspaces/ML-Powered-AI-News-Platform/GenAI-with-Agentic-AI/app/rag/embedder.py:18: LangChainDeprecationWarning: The class `HuggingFaceEmbeddings` was deprecated in LangChain 0.2.2 and will be removed in 1.0. An updated version of the class exists in the `langchain-huggingface package and should be used instead. To use it run `pip install -U `langchain-huggingface` and import as `from `langchain_huggingface import HuggingFaceEmbeddings``.
+INFO:app.main:📰 Initializing AI-powered news collection...
+INFO:app.main:🤖 AI Agents: News Scraper → Validator → VectorDB Storage
+INFO:app.main:✅ Service ready! AI agents collecting real news in background.
+INFO:app.auto_collector:🌟 Initializing AI-Powered News Collection System...
+INFO:app.auto_collector:🤖 Agents: Manager → News Scraper → Validator → VectorDB
+INFO:app.auto_collector:🌐 Collecting real news from internet...
+INFO:app.auto_collector:🚀 Starting AI-powered news collection...
+INFO:app.auto_collector:🤖 Agent Pipeline: Manager → Scraper → Validator → VectorDB
+INFO:app.auto_collector:📡 Using RSS feeds + article discovery for better content
+INFO:app.auto_collector:🔍 Collecting Technology news...
+INFO:app.auto_collector:📰 Processing RSS source: https://techcrunch.com/feed/ (Technology)
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:app.agent.news_agent:📰 Found 3 articles from RSS feed
+/workspaces/ML-Powered-AI-News-Platform/GenAI-with-Agentic-AI/app/rag/embedder.py:30: LangChainDeprecationWarning: The class `HuggingFaceEmbeddings` was deprecated in LangChain 0.2.2 and will be removed in 1.0. An updated version of the class exists in the `langchain-huggingface package and should be used instead. To use it run `pip install -U `langchain-huggingface` and import as `from `langchain_huggingface import HuggingFaceEmbeddings``.
   embedding_model = HuggingFaceEmbeddings(
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
 INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
 /workspaces/ML-Powered-AI-News-Platform/GenAI-with-Agentic-AI/app/rag/vectordb.py:26: LangChainDeprecationWarning: The class `Chroma` was deprecated in LangChain 0.2.9 and will be removed in 1.0. An updated version of the class exists in the `langchain-chroma package and should be used instead. To use it run `pip install -U `langchain-chroma` and import as `from `langchain_chroma import Chroma``.
   vectordb = Chroma(
 INFO:chromadb.telemetry.product.posthog:Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
-/workspaces/ML-Powered-AI-News-Platform/GenAI-with-Agentic-AI/app/auto_collector.py:229: LangChainDeprecationWarning: Since Chroma 0.4.x the manual persistence method is no longer supported as docs are automatically persisted.
+/workspaces/ML-Powered-AI-News-Platform/GenAI-with-Agentic-AI/app/agent/manager_agent.py:98: LangChainDeprecationWarning: Since Chroma 0.4.x the manual persistence method is no longer supported as docs are automatically persisted.
   vectordb.persist()
-INFO:app.auto_collector:✅ Successfully added 18 sample articles!
-INFO:app.auto_collector:✅ Initialized with 18 sample articles
-INFO:app.auto_collector:🚀 Starting automated news collection...
-INFO:app.auto_collector:🔍 Collecting Technology news...
-INFO:app.auto_collector:📰 Collecting from https://techcrunch.com/ (Technology)
-INFO:     Application startup complete.
-INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-🔄 Loading local model: google/flan-t5-base (first time may take a few minutes)...
-INFO:     103.205.152.155:0 - "GET / HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-Device set to use cpu
-Token indices sequence length is longer than the specified maximum sequence length for this model (821 > 512). Running this sequence through the model will result in indexing errors
-✅ Model loaded successfully!
-INFO:     127.0.0.1:43912 - "GET /news/fetch?limit=3 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:app.auto_collector:✅ Successfully collected from https://techcrunch.com/
-INFO:app.auto_collector:📊 Technology: 1 articles collected
+INFO:app.auto_collector:✅ Article collected: https://techcrunch.com/2025/12/06/spotify-wrapped-2024-is-almost-here-its-time-t...
+INFO:app.auto_collector:✅ Article collected: https://techcrunch.com/2025/12/05/digital-artist-beeple-put-his-face-on-a-100k-r...
+INFO:app.auto_collector:✅ Article collected: https://techcrunch.com/2025/12/05/ex-googlers-yoodli-triples-valuation-to-300m-w...
+INFO:app.auto_collector:✅ 3 articles from https://techcrunch.com/feed/
+INFO:app.auto_collector:📰 Processing RSS source: https://www.theverge.com/rss/index.xml (Technology)
+INFO:app.agent.news_agent:📰 Found 3 articles from RSS feed
+INFO:app.auto_collector:✅ Article collected: https://www.theverge.com/entertainment/839591/man-men-shannon-thompson-interview...
+INFO:app.auto_collector:✅ Article collected: https://www.theverge.com/entertainment/839494/ai-literacy-tiktok...
+INFO:app.auto_collector:✅ Article collected: https://www.theverge.com/games/839464/horses-review-santa-ragione-steam-epic-ban...
+INFO:app.auto_collector:✅ 3 articles from https://www.theverge.com/rss/index.xml
+INFO:app.auto_collector:✅ Technology: 6 articles collected successfully
 INFO:app.auto_collector:🔍 Collecting Business news...
-INFO:app.auto_collector:📰 Collecting from https://www.cnbc.com/business/ (Business)
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-WARNING:app.auto_collector:⚠️  Failed to collect from https://www.cnbc.com/business/: reject
-INFO:app.auto_collector:📊 Business: 0 articles collected
+INFO:app.auto_collector:📰 Processing RSS source: https://feeds.bbci.co.uk/news/business/rss.xml (Business)
+INFO:app.agent.news_agent:📰 Found 3 articles from RSS feed
+INFO:app.auto_collector:✅ Article collected: https://www.bbc.com/news/articles/cx25039ddlro?at_medium=RSS&at_campaign=rss...
+INFO:app.auto_collector:✅ Article collected: https://www.bbc.com/news/articles/cj9yvz4ewg8o?at_medium=RSS&at_campaign=rss...
+INFO:app.auto_collector:✅ Article collected: https://www.bbc.com/news/articles/ce91x2jm5pjo?at_medium=RSS&at_campaign=rss...
+INFO:app.auto_collector:✅ 3 articles from https://feeds.bbci.co.uk/news/business/rss.xml
+INFO:app.auto_collector:📰 Processing RSS source: https://www.cnbc.com/id/10001147/device/rss/rss.html (Business)
+INFO:app.agent.news_agent:📰 Found 3 articles from RSS feed
+INFO:app.auto_collector:✅ Article collected: https://www.cnbc.com/2025/12/06/the-history-of-denim-and-how-jeans-were-created....
+INFO:app.auto_collector:✅ Article collected: https://www.cnbc.com/2025/12/05/netflix-warner-bros-deal-regulatory-questions.ht...
+INFO:app.auto_collector:✅ Article collected: https://www.cnbc.com/2025/12/05/paramount-david-ellison-wbd-bidding-war-hostile-...
+INFO:app.auto_collector:✅ 3 articles from https://www.cnbc.com/id/10001147/device/rss/rss.html
+INFO:app.auto_collector:✅ Business: 6 articles collected successfully
 INFO:app.auto_collector:🔍 Collecting Science news...
-INFO:app.auto_collector:📰 Collecting from https://www.scientificamerican.com/ (Science)
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-WARNING:app.auto_collector:⚠️  Failed to collect from https://www.scientificamerican.com/: reject
-INFO:app.auto_collector:📊 Science: 0 articles collected
+INFO:app.auto_collector:📰 Processing RSS source: https://www.scientificamerican.com/feed/ (Science)
+INFO:app.agent.news_agent:📰 Found 0 articles from RSS feed
+WARNING:app.auto_collector:⚠️  No articles found from https://www.scientificamerican.com/feed/
+INFO:app.auto_collector:📰 Processing RSS source: https://phys.org/rss-feed/ (Science)
+INFO:app.agent.news_agent:📰 Found 3 articles from RSS feed
+INFO:app.auto_collector:✅ Article collected: https://phys.org/news/2025-12-approach-narrows-uncertainty-future-carbon.html...
+INFO:app.auto_collector:✅ Article collected: https://phys.org/news/2025-12-remarkably-tinamou-species-amazon-mountains.html...
+INFO:app.auto_collector:✅ Article collected: https://phys.org/news/2025-12-saturday-citations-cancer-therapy-breakthrough.htm...
+INFO:app.auto_collector:✅ 3 articles from https://phys.org/rss-feed/
+INFO:app.auto_collector:✅ Science: 3 articles collected successfully
 INFO:app.auto_collector:🔍 Collecting Health news...
-INFO:app.auto_collector:📰 Collecting from https://www.healthline.com/ (Health)
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-WARNING:app.auto_collector:⚠️  Failed to collect from https://www.healthline.com/: reject
-INFO:app.auto_collector:📊 Health: 0 articles collected
+INFO:app.auto_collector:📰 Processing RSS source: https://feeds.bbci.co.uk/news/health/rss.xml (Health)
+INFO:app.agent.news_agent:📰 Found 3 articles from RSS feed
+INFO:app.auto_collector:✅ Article collected: https://www.bbc.com/news/articles/c74xqn2zg1eo?at_medium=RSS&at_campaign=rss...
+INFO:app.auto_collector:✅ Article collected: https://www.bbc.com/news/articles/c1kpvxewg93o?at_medium=RSS&at_campaign=rss...
+INFO:app.auto_collector:✅ Article collected: https://www.bbc.com/news/articles/ce8q26q2r75o?at_medium=RSS&at_campaign=rss...
+INFO:app.auto_collector:✅ 3 articles from https://feeds.bbci.co.uk/news/health/rss.xml
+INFO:app.auto_collector:📰 Processing RSS source: https://www.medicalnewstoday.com/rss/news.xml (Health)
+INFO:app.agent.news_agent:📰 Found 0 articles from RSS feed
+WARNING:app.auto_collector:⚠️  No articles found from https://www.medicalnewstoday.com/rss/news.xml
+INFO:app.auto_collector:✅ Health: 3 articles collected successfully
 INFO:app.auto_collector:🔍 Collecting Sports news...
-INFO:app.auto_collector:📰 Collecting from https://www.espn.com/ (Sports)
-INFO:     127.0.0.1:37626 - "GET / HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:44746 - "GET /news/featured HTTP/1.1" 200 OK
-INFO:     127.0.0.1:44768 - "GET /news/fetch?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:44756 - "GET /news/trending?limit=3 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:39832 - "GET /news/fetch?limit=100 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:app.auto_collector:✅ Successfully collected from https://www.espn.com/
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:app.auto_collector:📊 Sports: 1 articles collected
+INFO:app.auto_collector:📰 Processing RSS source: https://feeds.bbci.co.uk/sport/rss.xml (Sports)
+INFO:app.agent.news_agent:📰 Found 3 articles from RSS feed
+INFO:app.auto_collector:✅ Article collected: https://www.bbc.com/sport/cricket/articles/cqlk0q5n0r4o?at_medium=RSS&at_campaig...
+INFO:app.auto_collector:✅ Article collected: https://www.bbc.com/sport/formula1/articles/cd6xgjgx9ddo?at_medium=RSS&at_campai...
+INFO:app.auto_collector:✅ Article collected: https://www.bbc.com/sport/cricket/videos/cjwynjyzw27o?at_medium=RSS&at_campaign=...
+INFO:app.auto_collector:✅ 3 articles from https://feeds.bbci.co.uk/sport/rss.xml
+INFO:app.auto_collector:📰 Processing RSS source: https://www.espn.com/espn/rss/news (Sports)
+INFO:app.agent.news_agent:📰 Found 3 articles from RSS feed
+INFO:app.auto_collector:✅ Article collected: https://www.espn.com/college-football/story/_/id/47213861/conference-championshi...
+INFO:app.auto_collector:✅ Article collected: https://www.espn.com/college-football/story/_/id/47201071/college-football-confe...
+INFO:app.auto_collector:✅ Article collected: https://www.espn.com/nfl/story/_/id/47216324/cowboys-coach-talk-pickens-sherman-...
+INFO:app.auto_collector:✅ 3 articles from https://www.espn.com/espn/rss/news
+INFO:app.auto_collector:✅ Sports: 6 articles collected successfully
 INFO:app.auto_collector:🔍 Collecting Entertainment news...
-INFO:app.auto_collector:📰 Collecting from https://variety.com/ (Entertainment)
-INFO:     127.0.0.1:39832 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:39832 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:39832 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:52922 - "GET /news/fetch?category=Lifestyle&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:52922 - "GET /news/fetch?category=Lifestyle&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:52922 - "GET /news/fetch?category=Lifestyle&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:49294 - "GET /news/fetch?category=Sports&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:49294 - "GET /news/fetch?category=Sports&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49296 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:46020 - "GET /news/fetch?limit=1&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:39864 - "GET /news/fetch?category=Sports&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:app.auto_collector:✅ Successfully collected from https://variety.com/
-INFO:app.auto_collector:📊 Entertainment: 1 articles collected
-INFO:app.auto_collector:🎉 Collection complete! Total articles: 3
-INFO:app.auto_collector:🎊 Real news collection complete! 3 articles added
-INFO:     127.0.0.1:39864 - "GET /news/fetch?limit=100 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:56972 - "GET /news/fetch?category=Fitness&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:56972 - "GET /news/fetch?category=Fitness&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:56972 - "GET /news/fetch?category=Fitness&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:45758 - "GET /news/fetch?category=Food&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:45758 - "GET /news/fetch?category=Food&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:45758 - "GET /news/fetch?category=Food&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:45758 - "GET /news/fetch?category=Travel&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:45758 - "GET /news/fetch?category=Travel&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:45758 - "GET /news/fetch?category=Travel&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:37330 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:36876 - "GET /news/fetch?category=Lifestyle&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:49464 - "GET /news/fetch?category=Travel&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:49464 - "GET /news/fetch?limit=100 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:38450 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:38450 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:57476 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:57492 - "GET /news/fetch?category=Lifestyle&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:57504 - "GET /news/fetch?category=Sports&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:57520 - "GET /news/fetch?category=Fitness&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:57504 - "GET /news/fetch?category=Sports&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:57520 - "GET /news/fetch?category=Fitness&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:57520 - "GET /news/fetch?category=Fitness&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:43818 - "GET /news/trending?limit=3 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:43824 - "GET /news/fetch?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:57520 - "GET /news/featured HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:57520 - "GET /news/fetch?category=Travel&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:57520 - "GET /news/fetch?category=Travel&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:57520 - "GET /news/fetch?category=Travel&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [24506]
+INFO:app.auto_collector:📰 Processing RSS source: https://variety.com/feed/ (Entertainment)
+INFO:app.agent.news_agent:📰 Found 3 articles from RSS feed
+INFO:app.auto_collector:✅ Article collected: https://variety.com/2025/film/global/rachid-bouchareb-reggane-nuclear-tests-red-...
+INFO:app.auto_collector:✅ Article collected: https://variety.com/2025/tv/news/sydney-sweeney-against-hate-american-eagle-back...
+INFO:app.auto_collector:✅ Article collected: https://variety.com/2025/shopping/news/how-to-watch-mls-cup-final-online-livestr...
+INFO:app.auto_collector:✅ 3 articles from https://variety.com/feed/
+INFO:app.auto_collector:📰 Processing RSS source: https://deadline.com/feed/ (Entertainment)
+INFO:app.agent.news_agent:📰 Found 3 articles from RSS feed
+INFO:app.auto_collector:✅ Article collected: https://deadline.com/2025/12/walton-goggins-fallout-cooper-reflection-all-us-sea...
+INFO:app.auto_collector:✅ Article collected: https://deadline.com/2025/12/french-cinema-boss-wbd-netflix-deal-red-sea-film-fe...
+INFO:app.auto_collector:✅ Article collected: https://deadline.com/2025/12/netflix-subscribers-letter-wb-deal-1236638340/...
+INFO:app.auto_collector:✅ 3 articles from https://deadline.com/feed/
+INFO:app.auto_collector:✅ Entertainment: 6 articles collected successfully
+INFO:app.auto_collector:🎉 AI collection complete! 30 real articles from internet
+INFO:app.auto_collector:📊 Sources processed: 12 sources
+INFO:app.auto_collector:📡 Collection methods: RSS feeds + article discovery
+INFO:app.auto_collector:✅ Real news collection successful! 30 articles added
+INFO:app.auto_collector:📊 Sources: TechCrunch, Variety, BBC, Reuters, etc.
+✅ HuggingFace token loaded: hf_NlzibNw...
+INFO:     127.0.0.1:35616 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35616 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35616 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35632 - "GET /news/trending?limit=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35642 - "GET /news/featured HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35632 - "GET /news/fetch?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52056 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52056 - "GET /news/fetch?category=Business&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52056 - "GET /news/fetch?category=Business&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52056 - "GET /news/fetch?category=Business&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52056 - "GET /news/fetch?category=Science&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52056 - "GET /news/fetch?category=Science&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52056 - "GET /news/fetch?category=Science&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52056 - "GET /news/fetch?category=Business&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35402 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55924 - "GET /news/fetch?category=Health&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55924 - "GET /news/fetch?category=Health&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55924 - "GET /news/fetch?category=Health&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55924 - "GET /news/fetch?category=Sports&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55924 - "GET /news/fetch?category=Sports&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55924 - "GET /news/fetch?category=Sports&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52620 - "GET /news/fetch?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47194 - "GET /news/fetch?category=Entertainment&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47194 - "GET /news/fetch?category=Entertainment&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47194 - "GET /news/fetch?category=Entertainment&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47204 - "GET /news/fetch?limit=5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40354 - "GET /news/fetch?limit=30 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52182 - "GET /news/fetch?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41778 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:app.routes.chat_routes:🔄 Initializing Llama 3.2 via HuggingFace API (serverless)...
+INFO:app.routes.chat_routes:   Token: hf_NlzibNw...
+INFO:app.routes.chat_routes:✅ Llama 3.2 API ready! (serverless, no downloads)
+INFO:httpx:HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+🔍 Query type: analytical, Category: Technology
+🤖 Using LLM for analytical response...
+✅ HuggingFace API LLM initialized with meta-llama/Llama-3.2-3B-Instruct:novita
+INFO:     127.0.0.1:35668 - "POST /chat/message HTTP/1.1" 200 OK
+INFO:httpx:HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+🔍 Query type: analytical, Category: Technology
+🤖 Using LLM for analytical response...
+INFO:     127.0.0.1:55450 - "POST /chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45058 - "GET /news/featured HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45058 - "GET /news/fetch?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45058 - "GET /news/trending?limit=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45058 - "GET /news/fetch?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42196 - "GET /news/fetch?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42210 - "GET /news/trending?limit=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42210 - "GET /news/featured HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42210 - "DELETE /chat/conversation/conv_1765034731543 HTTP/1.1" 200 OK
+🔍 Query type: list, Category: Technology
+INFO:     127.0.0.1:42210 - "POST /chat/message HTTP/1.1" 200 OK
+INFO:backoff:Backing off send_request(...) for 0.7s (requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Read timed out. (read timeout=15))

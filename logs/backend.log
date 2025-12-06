@@ -1,15 +1,58 @@
-
-> backend@1.0.0 dev
-> nodemon server.js
-
-[33m[nodemon] 3.1.10[39m
-[33m[nodemon] to restart at any time, enter `rs`[39m
-[33m[nodemon] watching path(s): *.*[39m
-[33m[nodemon] watching extensions: js,mjs,cjs,json[39m
-[32m[nodemon] starting `node server.js`[39m
-[dotenv@17.2.1] injecting env (0) from .env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+nohup: ignoring input
+[dotenv@17.2.1] injecting env (2) from .env -- tip: ⚙️  override existing env vars with { override: true }
 🚀 Backend Server running at http://localhost:5000
 📡 Connecting to GenAI Service at http://localhost:8000
-⚠️  GenAI Service not yet available. Make sure it's running on http://localhost:8000
-[32m[nodemon] restarting child process[39m
-[32m[nodemon] starting `node server.js`[39m
+✅ GenAI Service connected: GenAI Service Running 🚀
+🔍 Fetching articles from GenAI service: { category: 'Sports', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Sports', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Sports', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: undefined, limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: undefined, limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: undefined, limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: undefined, limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: undefined, limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Science', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Science', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Science', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Health', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Health', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Health', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Sports', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Sports', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Sports', limit: 20, offset: 0 }
+Fetching article with ID: 162c4e6e-8c58-4159-827f-72c14411e1e6
+🔍 Fetching articles from GenAI service: { category: 'Entertainment', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Entertainment', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Entertainment', limit: 20, offset: 0 }
+Fetching article with ID: 8d5bf882-3a82-474c-bbe4-96eaaae59322
+🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
+💬 Sending message to chatbot: can you suggest top 10 Ai evolution?
+💬 Sending message to chatbot: will ai replace all the works
+🔍 Fetching articles from GenAI service: { category: undefined, limit: 20, offset: 0 }
+Fetching article with ID: 4c9fb8a2-e504-4487-b1b2-e39f8222dc32
+🔍 Fetching articles from GenAI service: { category: undefined, limit: 20, offset: 0 }
+💬 Sending message to chatbot: What are the latest technology news?

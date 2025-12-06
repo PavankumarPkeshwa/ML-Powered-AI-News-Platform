@@ -13,49 +13,32 @@ from app.agent.manager_agent import ingest_url
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Default news sources by category
+# Default news sources by category (RSS and direct article URLs work better)
 NEWS_SOURCES = {
     "Technology": [
-        "https://techcrunch.com/",
-        "https://www.theverge.com/tech",
-        "https://arstechnica.com/",
-        "https://www.wired.com/category/gear/",
-        "https://www.cnet.com/news/",
+        {"url": "https://techcrunch.com/feed/", "type": "rss"},
+        {"url": "https://www.theverge.com/rss/index.xml", "type": "rss"},
+        {"url": "https://feeds.arstechnica.com/arstechnica/index", "type": "rss"},
     ],
     "Business": [
-        "https://www.cnbc.com/business/",
-        "https://www.bloomberg.com/",
-        "https://www.forbes.com/business/",
-        "https://www.businessinsider.com/",
-        "https://finance.yahoo.com/",
+        {"url": "https://feeds.bbci.co.uk/news/business/rss.xml", "type": "rss"},
+        {"url": "https://www.cnbc.com/id/10001147/device/rss/rss.html", "type": "rss"},
     ],
     "Science": [
-        "https://www.scientificamerican.com/",
-        "https://www.newscientist.com/",
-        "https://phys.org/",
-        "https://www.sciencedaily.com/",
-        "https://www.nature.com/news",
+        {"url": "https://www.scientificamerican.com/feed/", "type": "rss"},
+        {"url": "https://phys.org/rss-feed/", "type": "rss"},
     ],
     "Health": [
-        "https://www.healthline.com/",
-        "https://www.webmd.com/",
-        "https://www.medicalnewstoday.com/",
-        "https://www.health.com/",
-        "https://www.nih.gov/news-events",
+        {"url": "https://feeds.bbci.co.uk/news/health/rss.xml", "type": "rss"},
+        {"url": "https://www.medicalnewstoday.com/rss/news.xml", "type": "rss"},
     ],
     "Sports": [
-        "https://www.espn.com/",
-        "https://www.cbssports.com/",
-        "https://www.si.com/",
-        "https://bleacherreport.com/",
-        "https://www.skysports.com/",
+        {"url": "https://feeds.bbci.co.uk/sport/rss.xml", "type": "rss"},
+        {"url": "https://www.espn.com/espn/rss/news", "type": "rss"},
     ],
     "Entertainment": [
-        "https://variety.com/",
-        "https://www.hollywoodreporter.com/",
-        "https://deadline.com/",
-        "https://www.eonline.com/",
-        "https://www.imdb.com/news/",
+        {"url": "https://variety.com/feed/", "type": "rss"},
+        {"url": "https://deadline.com/feed/", "type": "rss"},
     ],
 }
 
@@ -338,72 +321,122 @@ Industry observers note this festival's approach could establish new standards f
     return sample_articles
 
 
-async def collect_from_url(url: str, category: str) -> bool:
+async def collect_from_source(source: dict, category: str, max_articles: int = 5) -> int:
     """
-    Attempt to collect news from a single URL.
-    Returns True if successful, False otherwise.
+    Collect news from a single source (RSS or homepage discovery).
+    Returns the number of successfully collected articles.
     """
+    from app.agent.news_agent import parse_rss_feed, discover_article_links
+    
+    url = source.get("url")
+    source_type = source.get("type", "discover")
+    
     try:
-        logger.info(f"📰 Collecting from {url} ({category})")
-        result = await asyncio.to_thread(ingest_url, url)
+        logger.info(f"📰 Processing {source_type.upper()} source: {url} ({category})")
         
-        if result.get("status") == "ingested":
-            logger.info(f"✅ Successfully collected from {url}")
-            return True
-        else:
-            logger.warning(f"⚠️  Failed to collect from {url}: {result.get('reason')}")
-            return False
+        # Get article URLs based on source type
+        article_urls = []
+        if source_type == "rss":
+            article_urls = await asyncio.to_thread(parse_rss_feed, url, max_articles)
+        else:  # discover
+            article_urls = await asyncio.to_thread(discover_article_links, url, max_articles)
+        
+        if not article_urls:
+            logger.warning(f"⚠️  No articles found from {url}")
+            return 0
+        
+        # Collect from each article URL
+        successful = 0
+        for article_url in article_urls:
+            try:
+                result = await asyncio.to_thread(ingest_url, article_url, category)
+                
+                if result.get("status") == "ingested":
+                    successful += 1
+                    logger.info(f"✅ Article collected: {article_url[:80]}...")
+                    
+                    # Don't overwhelm the system
+                    if successful >= max_articles:
+                        break
+                        
+                await asyncio.sleep(0.5)  # Be respectful to servers
+                
+            except Exception as e:
+                logger.warning(f"⚠️  Failed article: {str(e)[:50]}")
+                continue
+        
+        if successful > 0:
+            logger.info(f"✅ {successful} articles from {url}")
+        
+        return successful
+        
     except Exception as e:
-        logger.error(f"❌ Error collecting from {url}: {str(e)}")
-        return False
+        logger.error(f"❌ Error processing source {url}: {str(e)}")
+        return 0
 
 
-async def collect_news_for_category(category: str, urls: List[str], limit: int = 2) -> int:
+async def collect_news_for_category(category: str, sources: List[dict], limit: int = 2) -> int:
     """
-    Collect news for a specific category.
+    Collect news for a specific category from multiple sources.
     Returns the number of successfully collected articles.
     """
     logger.info(f"🔍 Collecting {category} news...")
-    successful = 0
+    total_articles = 0
     
-    for url in urls[:limit]:  # Limit to avoid overwhelming the system
-        success = await collect_from_url(url, category)
-        if success:
-            successful += 1
+    for source in sources[:limit]:  # Limit number of sources
+        count = await collect_from_source(source, category, max_articles=3)
+        total_articles += count
         await asyncio.sleep(1)  # Be respectful to source servers
     
-    return successful
+    return total_articles
 
 
-async def auto_collect_news(quick_mode: bool = True) -> Dict[str, int]:
+async def auto_collect_news(quick_mode: bool = False) -> Dict[str, int]:
     """
-    Automatically collect news from all categories.
+    Automatically collect news from all categories using AI agents.
+    
+    AI Agent Flow:
+    1. Manager Agent orchestrates the process
+    2. News Agent scrapes and extracts content
+    3. Validator Agent checks quality
+    4. Approved articles stored in VectorDB
     
     Args:
-        quick_mode: If True, collect fewer articles per category (faster startup)
+        quick_mode: If True, collect from fewer sources (1 per category)
+                   If False, collect from more sources (3 per category)
     
     Returns:
         Dictionary with collection statistics per category
     """
-    logger.info("🚀 Starting automated news collection...")
+    logger.info("🚀 Starting AI-powered news collection...")
+    logger.info("🤖 Agent Pipeline: Manager → Scraper → Validator → VectorDB")
+    logger.info("📡 Using RSS feeds + article discovery for better content")
     
     stats = {}
     limit = 1 if quick_mode else 2  # Number of sources per category
     
     # Collect from all categories concurrently
     tasks = []
-    for category, urls in NEWS_SOURCES.items():
-        task = collect_news_for_category(category, urls, limit)
+    for category, sources in NEWS_SOURCES.items():
+        task = collect_news_for_category(category, sources, limit)
         tasks.append((category, task))
     
     # Wait for all collections to complete
     for category, task in tasks:
         count = await task
         stats[category] = count
-        logger.info(f"📊 {category}: {count} articles collected")
+        if count > 0:
+            logger.info(f"✅ {category}: {count} articles collected successfully")
+        else:
+            logger.warning(f"⚠️  {category}: No articles collected (sources may be blocking)")
     
     total = sum(stats.values())
-    logger.info(f"🎉 Collection complete! Total articles: {total}")
+    if total > 0:
+        logger.info(f"🎉 AI collection complete! {total} real articles from internet")
+        logger.info(f"📊 Sources processed: {sum([min(limit, len(sources)) for sources in NEWS_SOURCES.values()])} sources")
+        logger.info(f"📡 Collection methods: RSS feeds + article discovery")
+    else:
+        logger.error("❌ No articles collected - all sources failed or were rejected")
     
     return stats
 
@@ -468,30 +501,43 @@ def populate_with_samples():
         return 0
 
 
-async def initialize_news_collection(use_samples: bool = True):
+async def initialize_news_collection(use_samples: bool = False):
     """
-    Initialize the news collection system.
+    Initialize the news collection system with AI agents.
     This should be called on application startup.
     
     Args:
-        use_samples: If True, populate with sample articles first (recommended)
+        use_samples: If True, populate with sample articles (only as fallback)
     """
-    logger.info("🌟 Initializing News Collection System...")
+    logger.info("🌟 Initializing AI-Powered News Collection System...")
+    logger.info("🤖 Agents: Manager → News Scraper → Validator → VectorDB")
     
-    # First, populate with samples to ensure UI has content immediately
+    # Try to collect REAL news from internet first
+    try:
+        logger.info("🌐 Collecting real news from internet...")
+        stats = await auto_collect_news(quick_mode=False)  # Full collection, not quick
+        total = sum(stats.values())
+        
+        if total > 0:
+            logger.info(f"✅ Real news collection successful! {total} articles added")
+            logger.info("📊 Sources: TechCrunch, Variety, BBC, Reuters, etc.")
+            return
+        else:
+            logger.warning("⚠️ No articles collected from real sources")
+            
+    except Exception as e:
+        import traceback
+        logger.error(f"❌ Real news collection error: {str(e)}")
+        logger.error(traceback.format_exc())
+    
+    # Fallback to samples only if real collection completely failed AND requested
     if use_samples:
+        logger.info("📝 Falling back to sample articles...")
         sample_count = populate_with_samples()
         logger.info(f"✅ Initialized with {sample_count} sample articles")
-    
-    # Then try to collect real news (in background, non-blocking)
-    # This happens after the server starts, so it doesn't delay startup
-    try:
-        stats = await auto_collect_news(quick_mode=True)
-        total = sum(stats.values())
-        logger.info(f"🎊 Real news collection complete! {total} articles added")
-    except Exception as e:
-        logger.warning(f"⚠️  Could not collect real news: {str(e)}")
-        logger.info("📝 Using sample articles only")
+    else:
+        logger.warning("⚠️ No samples loaded - UI may be empty until news is collected")
+        logger.info("💡 Trigger manual collection: curl http://localhost:8000/scraper/cron")
 
 
 # For manual triggering
