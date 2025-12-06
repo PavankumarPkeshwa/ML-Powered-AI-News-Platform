@@ -14,7 +14,11 @@ cd Backend && npm install && cd ..
 cd Frontend && npm install && cd ..
 cd GenAI-with-Agentic-AI && pip install -r requirements.txt && cd ..
 
-# Start all services
+# (Optional) Enable Llama 3.2 for better chatbot responses
+# Create .env file in GenAI-with-Agentic-AI/ with your HuggingFace token
+# See Configuration section below for details
+
+# Start all services (works with or without .env!)
 ./scripts/start-all.sh
 
 # Check service status
@@ -22,6 +26,8 @@ cd GenAI-with-Agentic-AI && pip install -r requirements.txt && cd ..
 ```
 
 Then open **http://localhost:5173** in your browser!
+
+> 💡 **Note**: No `.env` file required! App works out-of-the-box. Add HuggingFace token later for enhanced chatbot responses.
 
 ## ✨ Key Features
 
@@ -316,11 +322,21 @@ results = vectordb.similarity_search(
 
 ## 🔧 Configuration & Environment Variables
 
-### GenAI Service (`.env`)
+### GenAI Service (`.env`) - **OPTIONAL**
+
+> ⚠️ **Important**: The `.env` file is **optional**! The application will work without it.
+> - **Without token**: Chatbot uses Flan-T5-base (smaller, faster, but weaker responses)
+> - **With token**: Chatbot uses Llama 3.2-3B-Instruct (better reasoning and analytical answers)
+
+**To enable Llama 3.2** (optional but recommended):
+1. Create `.env` file in `GenAI-with-Agentic-AI/` directory
+2. Add your HuggingFace token:
 ```bash
-HUGGINGFACE_TOKEN=hf_your_token_here  # For Llama 3.2 API access
-HF_TOKEN=hf_your_token_here           # Same token
+HUGGINGFACE_TOKEN=hf_your_token_here  # Get free token from huggingface.co/settings/tokens
+HF_TOKEN=hf_your_token_here           # Same token (either variable works)
 ```
+
+**Get your free token**: Visit [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens) and create a new token.
 
 ### Customizing News Sources
 Edit `GenAI-with-Agentic-AI/app/auto_collector.py`:
@@ -490,6 +506,18 @@ chmod +x scripts/*.sh
 - **Documented**: Extensive inline comments and documentation
 
 ## 🐛 Troubleshooting
+
+### ✅ "Will I Get Errors on Next Run?"
+**No! The application will run successfully without any `.env` file.** Here's what happens:
+
+- ✅ **All services start normally** (Frontend, Backend, GenAI)
+- ✅ **News collection works** (RSS feeds, AI agents, VectorDB)
+- ✅ **Chatbot list mode works** ("show me latest news" → returns articles)
+- ⚠️ **Chatbot analytical mode** uses Flan-T5 (weaker model) instead of Llama 3.2
+  - Still works, but answers may be shorter/less sophisticated
+  - To upgrade: Create `.env` file with your HuggingFace token (see Configuration section)
+
+**No errors, no crashes** - just different LLM quality depending on token availability.
 
 ### Services Not Starting
 ```bash
