@@ -457,10 +457,11 @@ async def collect_from_source(source: dict, category: str, max_articles: int = 5
         return 0
 
 
-async def collect_news_for_category(category: str, sources: List[dict], limit: int = 2) -> int:
+async def collect_news_for_category(category: str, sources: List[dict], limit: int = 7) -> int:
     """
     Collect news for a specific category from multiple sources.
     Returns the number of successfully collected articles.
+    Target: ~20 articles per category (7 sources × 3 articles = 21)
     """
     logger.info(f"🔍 Collecting {category} news...")
     total_articles = 0
@@ -526,7 +527,7 @@ async def auto_collect_news(quick_mode: bool = False, clear_old: bool = False) -
     logger.info("📡 Using RSS feeds + article discovery for better content")
     
     stats = {}
-    limit = 1 if quick_mode else 2  # Number of sources per category
+    limit = 3 if quick_mode else 7  # Number of sources per category (7 sources × 3 articles = ~21 per category)
     
     # Collect from all categories concurrently
     tasks = []
