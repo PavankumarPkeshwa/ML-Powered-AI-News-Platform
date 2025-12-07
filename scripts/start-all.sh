@@ -14,7 +14,7 @@ echo -e "${BLUE}╚════════════════════�
 echo ""
 
 # Check if running in the correct directory
-if [ ! -d "GenAI-with-Agentic-AI" ] || [ ! -d "Backend" ] || [ ! -d "Frontend" ]; then
+if [ ! -d "genai-with-agentic-ai" ] || [ ! -d "Backend" ] || [ ! -d "Frontend" ]; then
     echo -e "${RED}Error: Please run this script from the project root directory${NC}"
     exit 1
 fi
@@ -76,8 +76,8 @@ echo ""
 
 # Start GenAI Service
 echo -e "${BLUE}Starting GenAI Service on port 8000...${NC}"
-cd GenAI-with-Agentic-AI
-python -m uvicorn app.main:app --reload --port 8000 > ../logs/genai.log 2>&1 &
+cd genai-with-agentic-ai
+python -m uvicorn main:app --reload --port 8000 > ../logs/genai.log 2>&1 &
 GENAI_PID=$!
 cd ..
 sleep 3

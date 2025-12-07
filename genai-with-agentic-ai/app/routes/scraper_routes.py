@@ -1,7 +1,9 @@
 from fastapi import APIRouter, Query, BackgroundTasks
-from app.scraper.scraper import scrape_single
-from app.scraper.cron import run_cron_job
-from app.auto_collector import auto_collect_news, populate_with_samples
+import sys
+sys.path.insert(0, '/workspaces/ML-Powered-AI-News-Platform/genai-with-agentic-ai')
+from scraper.fetcher import scrape_single
+from scraper.cleaner import run_cron_job
+from agents.supervisor_agent import auto_collect_news, populate_with_samples
 import asyncio
 
 router = APIRouter(prefix="/scraper", tags=["Scraper"])

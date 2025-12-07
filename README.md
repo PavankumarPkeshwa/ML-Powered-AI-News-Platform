@@ -12,10 +12,10 @@ cd ML-Powered-AI-News-Platform
 # Install dependencies
 cd Backend && npm install && cd ..
 cd Frontend && npm install && cd ..
-cd GenAI-with-Agentic-AI && pip install -r requirements.txt && cd ..
+cd genai-with-agentic-ai && pip install -r requirements.txt && cd ..
 
 # (Optional) Enable Llama 3.2 for better chatbot responses
-# Create .env file in GenAI-with-Agentic-AI/ with your HuggingFace token
+# Create .env file in genai-with-agentic-ai/ with your HuggingFace token
 # See Configuration section below for details
 
 # Start all services (works with or without .env!)
@@ -56,7 +56,7 @@ Then open **http://localhost:5173** in your browser!
 ML-Powered-AI-News-Platform/
 ├── Backend/                 # Node.js Express API Gateway
 ├── Frontend/                # React + TypeScript + Vite
-├── GenAI-with-Agentic-AI/  # Python FastAPI with RAG & AI Agents
+├── genai-with-agentic-ai/  # Python FastAPI with RAG & AI Agents
 ├── shared/                  # Shared TypeScript schemas
 ├── scripts/                 # Utility scripts
 ├── docs/                    # Documentation
@@ -213,34 +213,32 @@ Frontend/
 │       └── use-toast.ts      # Toast notification hook
 ```
 
-### GenAI Service (Python FastAPI + AI)
+### GenAI Service (Python FastAPI + AI) - **MODULAR STRUCTURE**
 ```
-GenAI-with-Agentic-AI/
-├── app/
-│   ├── main.py               # FastAPI app + startup event
-│   ├── auto_collector.py     # News collection orchestrator (RSS feeds)
-│   ├── agent/
-│   │   ├── manager_agent.py  # Orchestrates scraping pipeline
-│   │   ├── news_agent.py     # RSS parser + article scraper
-│   │   └── validator_agent.py# Content quality validation
-│   ├── routes/
-│   │   ├── news_routes.py    # /news/fetch, /news/featured
-│   │   ├── chat_routes.py    # /chat/message (DUAL-MODE CHATBOT)
-│   │   ├── agent_routes.py   # /agent/ingest (manual ingestion)
-│   │   ├── rag_routes.py     # /rag/query (RAG queries)
-│   │   └── scraper_routes.py # /scraper/cron (manual collection trigger)
-│   ├── rag/
-│   │   ├── vectordb.py       # ChromaDB wrapper
-│   │   ├── embedder.py       # Sentence transformer embeddings
-│   │   ├── rag_chain.py      # LangChain RAG pipeline
-│   │   ├── loader.py         # Document loading utilities
-│   │   └── splitter.py       # Text chunking for large docs
-│   ├── scraper/
-│   │   ├── scraper.py        # Web scraping utilities
-│   │   └── cron.py           # Scheduled news collection
-│   └── utils/
-│       ├── hf_api_llm.py     # HuggingFace Inference API wrapper (Llama 3.2)
-│       └── local_llm.py      # Local LLM loader (Flan-T5 fallback)
+genai-with-agentic-ai/
+├── main.py                   # FastAPI app entry point
+├── agents/                   # AI Agent modules
+│   ├── supervisor_agent.py   # Orchestrates collection + manager logic
+│   ├── scraper_agent.py      # RSS parser + article scraper
+│   └── storage_agent.py      # Content validation before storage
+├── api/                      # API route handlers
+│   ├── chat_api.py           # /chat/message (DUAL-MODE CHATBOT)
+│   └── news_api.py           # /news/fetch, /news/featured
+├── rag/                      # RAG (Retrieval Augmented Generation)
+│   ├── vectordb.py           # ChromaDB wrapper
+│   ├── embedder.py           # Sentence transformer embeddings
+│   ├── rag_chain.py          # LangChain RAG pipeline
+│   ├── retriever.py          # Document retrieval utilities
+│   ├── splitter.py           # Text chunking for large docs
+│   └── llm.py                # LLM wrappers (HuggingFace + Local)
+├── scraper/                  # News scraping utilities
+│   ├── sources.py            # RSS feed configurations
+│   ├── fetcher.py            # Web scraping functions
+│   └── cleaner.py            # Content cleaning utilities
+├── app/routes/               # Legacy route imports (for compatibility)
+│   ├── rag_routes.py         # /rag/query
+│   ├── agent_routes.py       # /agent/ingest
+│   └── scraper_routes.py     # /scraper/cron
 └── vector_store/             # ChromaDB persistent storage
 ```
 
@@ -329,7 +327,7 @@ results = vectordb.similarity_search(
 > - **With token**: Chatbot uses Llama 3.2-3B-Instruct (better reasoning and analytical answers)
 
 **To enable Llama 3.2** (optional but recommended):
-1. Create `.env` file in `GenAI-with-Agentic-AI/` directory
+1. Create `.env` file in `genai-with-agentic-ai/` directory
 2. Add your HuggingFace token:
 ```bash
 HUGGINGFACE_TOKEN=hf_your_token_here  # Get free token from huggingface.co/settings/tokens
@@ -339,7 +337,7 @@ HF_TOKEN=hf_your_token_here           # Same token (either variable works)
 **Get your free token**: Visit [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens) and create a new token.
 
 ### Customizing News Sources
-Edit `GenAI-with-Agentic-AI/app/auto_collector.py`:
+Edit `genai-with-agentic-ai/scraper/sources.py`:
 ```python
 NEWS_SOURCES = {
     "YourCategory": [
@@ -363,7 +361,7 @@ NEWS_SOURCES = {
 ### Method 2: Manual Start (Individual Services)
 ```bash
 # Terminal 1 - Start GenAI Service (Port 8000)
-cd GenAI-with-Agentic-AI
+cd genai-with-agentic-ai
 uvicorn app.main:app --host 0.0.0.0 --port 8000
 
 # Terminal 2 - Start Backend (Port 5000)
@@ -378,7 +376,7 @@ npm run dev
 ### Method 3: Background Start (Production-like)
 ```bash
 # Start in background with logs
-cd GenAI-with-Agentic-AI
+cd genai-with-agentic-ai
 nohup uvicorn app.main:app --host 0.0.0.0 --port 8000 > ../logs/genai.log 2>&1 &
 
 cd Backend
@@ -454,12 +452,12 @@ npm install
 cd ..
 
 # 4. Install GenAI dependencies
-cd GenAI-with-Agentic-AI
+cd genai-with-agentic-ai
 pip install -r requirements.txt
 cd ..
 
 # 5. Configure HuggingFace token (optional, for better LLM)
-cd GenAI-with-Agentic-AI
+cd genai-with-agentic-ai
 echo "HUGGINGFACE_TOKEN=your_hf_token_here" > .env
 cd ..
 
@@ -473,7 +471,7 @@ chmod +x scripts/*.sh
 ### Getting HuggingFace Token (Optional)
 1. Go to https://huggingface.co/settings/tokens
 2. Create a new token (read access)
-3. Add to `GenAI-with-Agentic-AI/.env`:
+3. Add to `genai-with-agentic-ai/.env`:
    ```bash
    HUGGINGFACE_TOKEN=hf_YourTokenHere
    HF_TOKEN=hf_YourTokenHere
@@ -570,7 +568,7 @@ cd Backend && npm install --force
 cd Frontend && npm install --force
 
 # GenAI - Reinstall with specific versions
-cd GenAI-with-Agentic-AI
+cd genai-with-agentic-ai
 pip install --upgrade pip
 pip install -r requirements.txt --force-reinstall
 ```
@@ -621,7 +619,7 @@ This project is licensed under the MIT License.
 - [Setup Guide](docs/SETUP_GUIDE.md) - Detailed installation steps
 - [Quick Reference](docs/QUICK_REFERENCE.md) - Commands and shortcuts
 - [System Flow](docs/SYSTEM_FLOW.md) - Architecture diagrams
-- [Chatbot Modes](GenAI-with-Agentic-AI/CHATBOT_MODES.md) - How dual-mode works
+- [Chatbot Modes](genai-with-agentic-ai/CHATBOT_MODES.md) - How dual-mode works
 - [Implementation Summary](IMPLEMENTATION_SUMMARY.md) - Feature overview
 
 ## 🚀 Future Enhancements

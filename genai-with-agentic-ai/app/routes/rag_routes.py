@@ -5,7 +5,9 @@ API endpoints for the RAG pipeline.
 """
 
 from fastapi import APIRouter
-from app.rag.rag_chain import get_rag_chain
+import sys
+sys.path.insert(0, '/workspaces/ML-Powered-AI-News-Platform/genai-with-agentic-ai')
+from rag.rag_chain import get_rag_chain
 
 router = APIRouter(prefix="/rag", tags=["RAG"])
 
