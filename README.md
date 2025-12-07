@@ -4,30 +4,67 @@ A fully intelligent news aggregation platform powered by **AI Agents**, **RAG (R
 
 ## 🚀 Quick Start
 
+### 1. Clone & Install Dependencies
+
 ```bash
 # Clone the repository
 git clone https://github.com/PavankumarPkeshwa/ML-Powered-AI-News-Platform.git
 cd ML-Powered-AI-News-Platform
 
-# Install dependencies
+# Install Backend dependencies
 cd Backend && npm install && cd ..
+
+# Install Frontend dependencies
 cd Frontend && npm install && cd ..
+
+# Install GenAI service dependencies
 cd genai-with-agentic-ai && pip install -r requirements.txt && cd ..
-
-# (Optional) Enable Llama 3.2 for better chatbot responses
-# Create .env file in genai-with-agentic-ai/ with your HuggingFace token
-# See Configuration section below for details
-
-# Start all services (works with or without .env!)
-./scripts/start-all.sh
-
-# Check service status
-./scripts/check-status.sh
 ```
 
-Then open **http://localhost:5173** in your browser!
+### 2. Configure Environment (Optional but Recommended)
 
-> 💡 **Note**: No `.env` file required! App works out-of-the-box. Add HuggingFace token later for enhanced chatbot responses.
+Create `.env` file in `genai-with-agentic-ai/` directory:
+
+```bash
+# genai-with-agentic-ai/.env
+HUGGINGFACE_TOKEN=hf_your_token_here
+HF_TOKEN=hf_your_token_here
+```
+
+**Get your HuggingFace token:**
+1. Go to https://huggingface.co/settings/tokens
+2. Create a new token (Read access is sufficient)
+3. Copy and paste into `.env` file
+
+> 💡 **Without `.env`**: App uses local Flan-T5 model (slower responses)  
+> ✨ **With `.env`**: App uses Llama 3.2 via API (fast, intelligent responses)
+
+### 3. Start All Services
+
+```bash
+# Start GenAI, Backend, and Frontend together
+bash scripts/start-all.sh
+```
+
+**Services will start on:**
+- 🤖 GenAI Service: http://localhost:8000
+- 🔧 Backend API: http://localhost:5000
+- 🎨 Frontend UI: http://localhost:5173
+
+### 4. Trigger News Collection
+
+```bash
+# Collect fresh news articles from 60+ RSS feeds
+curl -X POST http://localhost:8000/scraper/refresh-news
+```
+
+This fetches ~20 articles per category (Technology, Business, Science, Health, Sports, Entertainment).
+
+### 5. Access the Platform
+
+Open **http://localhost:5173** in your browser!
+
+> 💡 **Automated Updates**: News automatically refreshes every 6 hours in the background.
 
 ## ✨ Key Features
 
@@ -37,10 +74,11 @@ Then open **http://localhost:5173** in your browser!
 - **Article Discovery**: Intelligent parsing of RSS feeds and homepage article links
 - **30+ Sources**: Across Technology, Business, Science, Health, Sports, Entertainment
 
-### 🤖 Intelligent Chatbot (Dual-Mode)
-- **List Mode**: "Show me latest technology news" → Returns top 10 articles
-- **Analytical Mode**: "Will AI kill human jobs?" → Llama 3.2 provides reasoning with article references
-- **Category Filtering**: Asks about specific categories (health, tech, etc.)
+### 🤖 Intelligent AI Chatbot
+- **Always Analytical**: Every query gets AI reasoning from Llama 3.2
+- **Top 5 Articles**: Shows related articles with clickable links
+- **Category Aware**: Automatically detects topic (tech, health, sports, etc.)
+- **Smart Responses**: AI analysis + source articles for every question
 - **Powered by Llama 3.2-3B-Instruct** via HuggingFace Inference API
 
 ### 🔍 Advanced Features
@@ -109,59 +147,110 @@ ML-Powered-AI-News-Platform/
                             └───────────────────┘
 ```
 
-### News Collection Workflow
+### 📰 Complete News Collection Workflow
 
-1. **Startup** (`app/main.py`)
-   - GenAI service initializes
-   - Calls `initialize_news_collection(use_samples=False)`
-   - Prioritizes real news over sample articles
+#### 1. **Service Startup** (`genai-with-agentic-ai/main.py`)
+```
+Start GenAI Service → Initialize FastAPI → Load .env (if exists)
+                                      ↓
+                        Setup Periodic Collection (every 6 hours)
+                                      ↓
+                        Service Ready on Port 8000
+```
 
-2. **Auto Collector** (`app/auto_collector.py`)
-   - Reads RSS feeds from 30+ news sources
-   - Parses feeds using `feedparser` library
-   - Extracts article URLs (3-5 per source)
-   - Passes to Manager Agent
+#### 2. **News Collection Pipeline** (Manual or Automatic)
+```
+Trigger: POST /scraper/refresh-news OR Automated 6-hour interval
+                                ↓
+        Clear Old Articles from VectorDB
+                                ↓
+    Read NEWS_SOURCES from scraper/sources.py (60+ RSS feeds)
+                                ↓
+            For each category (Tech, Business, Science, Health, Sports, Entertainment):
+                                ↓
+            Collect from 7 sources × 3 articles = ~21 articles per category
+                                ↓
+                    Parse RSS Feed → Extract Article URLs
+                                ↓
+            For each article URL:
+                1. agents/scraper_agent.py: Fetch HTML
+                2. extract_main_text_from_html(): Clean content (remove nav, ads)
+                3. agents/supervisor_agent.py: Validate & add metadata
+                4. rag/vectordb.py: Convert to embeddings
+                5. Store in ChromaDB with metadata
+                                ↓
+        Result: ~126 articles stored across all categories
+```
 
-3. **Manager Agent** (`app/agent/manager_agent.py`)
-   - Orchestrates the ingestion pipeline
-   - Calls News Agent to fetch and clean content
-   - Generates rich metadata (title, category, tags, etc.)
-   - Stores in ChromaDB with proper categorization
+**Key Files:**
+- `scraper/sources.py`: RSS feed configuration (60+ sources)
+- `agents/scraper_agent.py`: HTML fetching & text extraction
+- `agents/supervisor_agent.py`: Orchestration & validation
+- `rag/vectordb.py`: Vector storage & semantic search
+- `rag/embedder.py`: Text → embeddings conversion
 
-4. **News Agent** (`app/agent/news_agent.py`)
-   - Fetches HTML from article URLs
-   - Extracts main text using BeautifulSoup
-   - Parses titles from HTML tags
-   - Returns cleaned content
+#### 3. **User Access Workflow**
 
-5. **Storage** (`app/rag/vectordb.py`)
-   - Converts articles to embeddings
-   - Stores in ChromaDB with metadata
-   - Enables semantic search
+```
+User opens http://localhost:5173 (Frontend)
+                    ↓
+    Frontend requests: GET /api/articles
+                    ↓
+    Backend (Port 5000) forwards to GenAI (Port 8000)
+                    ↓
+    GenAI queries ChromaDB → Returns articles
+                    ↓
+    Articles displayed on homepage with categories
+```
 
-### Chatbot Workflow
+### 🤖 Complete Chatbot Workflow
 
-1. **User Query** → Frontend sends to Backend → Backend forwards to GenAI
+#### User Query Processing
 
-2. **Query Analysis** (`app/routes/chat_routes.py`)
-   ```python
-   detect_query_type(message)
-   # Returns: "list" or "analytical"
-   
-   detect_category(message)  
-   # Returns: Technology, Health, Business, etc.
-   ```
+```
+User types question in chatbot → Frontend sends POST /api/chat/message
+                                            ↓
+                    Backend forwards to GenAI /chat/message
+                                            ↓
+                    api/chat_api.py processes query
+                                            ↓
+                Detect category (Technology, Health, etc.)
+                                            ↓
+        Search ChromaDB for top 5 relevant articles
+            ↓                                       ↓
+    Filter by category                    Semantic similarity search
+            ↓                                       ↓
+        Get top 5 articles with metadata & source URLs
+                                            ↓
+            Build context from articles (top 3 for LLM)
+                                            ↓
+        Call Llama 3.2 API with prompt + context
+                                            ↓
+        Generate AI Analysis (reasoning & insights)
+                                            ↓
+    Format Response:
+    ┌────────────────────────────────┐
+    │ 💡 AI Analysis:                │
+    │ [Llama 3.2 reasoning]          │
+    │                                │
+    │ 📰 Top 5 Related Articles:     │
+    │ 1. Title (Category)            │
+    │    🔗 [Read full article](url) │
+    │ 2. Title (Category)            │
+    │    🔗 [Read full article](url) │
+    │ ... (5 total)                  │
+    └────────────────────────────────┘
+                    ↓
+    Return to Frontend → Display in chatbot UI
+```
 
-3. **List Mode** (e.g., "Show latest tech news")
-   - Searches VectorDB by category
-   - Returns top 10 articles directly
-   - Fast response (~100ms)
-
-4. **Analytical Mode** (e.g., "Will AI replace jobs?")
-   - Searches VectorDB for relevant articles (top 3)
-   - Builds context from article content
-   - Calls Llama 3.2 via HuggingFace API
-   - Returns AI-generated answer + references
+**Key Files:**
+- `Frontend/src/components/chatbot.tsx`: Chat UI component
+- `Backend/controllers/chatController.js`: API proxy
+- `genai-with-agentic-ai/api/chat_api.py`: Query processing & LLM integration
+- `genai-with-agentic-ai/rag/llm.py`: Llama 3.2 API wrapper
+- `genai-with-agentic-ai/rag/rag_chain.py`: RAG pipeline
+- `genai-with-agentic-ai/rag/vectordb.py`: Semantic search
 
 ## 📂 Detailed File Structure & Roles
 
@@ -573,15 +662,76 @@ pip install --upgrade pip
 pip install -r requirements.txt --force-reinstall
 ```
 
+## ⚙️ Complete Configuration Guide
+
+### Environment Variables (.env)
+
+**Location**: `genai-with-agentic-ai/.env`
+
+**Required**: No (optional, but recommended for better chatbot performance)
+
+**Content**:
+```bash
+# HuggingFace Token for Llama 3.2 API
+HUGGINGFACE_TOKEN=hf_your_actual_token_here
+HF_TOKEN=hf_your_actual_token_here
+
+# Note: Both variables point to the same token
+# The system checks both for compatibility
+```
+
+**How to get HuggingFace Token:**
+1. Visit https://huggingface.co/
+2. Sign up for free account
+3. Go to Settings → Access Tokens
+4. Create new token (Read access sufficient)
+5. Copy token and paste in `.env` file
+
+**Impact of .env file:**
+- ✅ **With Token**: Uses Llama 3.2-3B-Instruct via API (fast, intelligent, analytical responses)
+- ⚠️ **Without Token**: Uses local Flan-T5-base model (slower, basic responses)
+
+### News Sources Configuration
+
+**File**: `genai-with-agentic-ai/scraper/sources.py`
+
+Currently configured with **60+ RSS feeds**:
+- Technology: 10 sources (TechCrunch, Verge, Wired, etc.)
+- Business: 10 sources (BBC, CNBC, Bloomberg, etc.)
+- Science: 10 sources (Scientific American, Nature, etc.)
+- Health: 10 sources (Medical News Today, Mayo Clinic, etc.)
+- Sports: 10 sources (ESPN, BBC Sport, etc.)
+- Entertainment: 10 sources (Variety, Deadline, etc.)
+
+**Collection Settings**:
+- Sources per category: 7
+- Articles per source: 3
+- Total per category: ~21 articles
+- Total across platform: ~126 articles
+
+**To customize**, edit `NEWS_SOURCES` dictionary in `scraper/sources.py`.
+
+### Service Ports
+
+- **Frontend**: 5173 (Vite dev server)
+- **Backend**: 5000 (Express API)
+- **GenAI**: 8000 (FastAPI service)
+
+To change ports, edit:
+- Frontend: `Frontend/vite.config.ts`
+- Backend: `Backend/server.js`
+- GenAI: `genai-with-agentic-ai/main.py`
+
 ## 📊 Project Statistics
 
 - **Lines of Code**: ~5,000+
 - **Services**: 3 (Frontend, Backend, GenAI)
 - **API Endpoints**: 15+
-- **News Sources**: 30+ RSS feeds
+- **News Sources**: 60+ RSS feeds
 - **Categories**: 6 (Technology, Business, Science, Health, Sports, Entertainment)
-- **Average Collection**: 30+ real articles per startup
-- **Technologies Used**: 15+ (React, FastAPI, ChromaDB, LangChain, etc.)
+- **Average Collection**: ~126 articles (21 per category)
+- **Automated Refresh**: Every 6 hours
+- **Technologies Used**: 15+ (React, FastAPI, ChromaDB, LangChain, Llama 3.2, etc.)
 
 ## 🤝 Contributing
 
