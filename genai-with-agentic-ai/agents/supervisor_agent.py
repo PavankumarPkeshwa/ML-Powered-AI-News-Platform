@@ -473,7 +473,33 @@ async def collect_news_for_category(category: str, sources: List[dict], limit: i
     return total_articles
 
 
-async def auto_collect_news(quick_mode: bool = False) -> Dict[str, int]:
+def clear_old_articles():
+    """
+    Clear old articles from VectorDB to make room for fresh news.
+    This ensures the database stays fresh and doesn't grow indefinitely.
+    """
+    try:
+        logger.info("🗑️  Clearing old articles from VectorDB...")
+        vectordb = get_vector_db()
+        
+        # Delete the entire collection and recreate it
+        try:
+            vectordb.delete_collection()
+            logger.info("✅ Old articles cleared from VectorDB")
+        except Exception as e:
+            logger.warning(f"⚠️  Could not clear collection: {e}")
+            # Alternative: just reset by deleting the chroma directory
+            import shutil
+            vector_store_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "vector_store")
+            if os.path.exists(vector_store_path):
+                shutil.rmtree(vector_store_path)
+                os.makedirs(vector_store_path)
+                logger.info("✅ VectorDB reset by removing storage directory")
+    except Exception as e:
+        logger.error(f"❌ Error clearing VectorDB: {str(e)}")
+
+
+async def auto_collect_news(quick_mode: bool = False, clear_old: bool = False) -> Dict[str, int]:
     """
     Automatically collect news from all categories using AI agents.
     
@@ -486,10 +512,15 @@ async def auto_collect_news(quick_mode: bool = False) -> Dict[str, int]:
     Args:
         quick_mode: If True, collect from fewer sources (1 per category)
                    If False, collect from more sources (3 per category)
+        clear_old: If True, clear old articles before collecting new ones
     
     Returns:
         Dictionary with collection statistics per category
     """
+    # Clear old articles if requested
+    if clear_old:
+        clear_old_articles()
+    
     logger.info("🚀 Starting AI-powered news collection...")
     logger.info("🤖 Agent Pipeline: Manager → Scraper → Validator → VectorDB")
     logger.info("📡 Using RSS feeds + article discovery for better content")
@@ -631,17 +662,25 @@ def collect_news_sync():
 # For scheduled/periodic collection
 async def periodic_news_collection(interval_hours: int = 6):
     """
-    Periodically collect news at specified intervals.
+    Periodically collect fresh news at specified intervals.
+    Clears old articles and fetches new ones to keep database fresh.
     
     Args:
-        interval_hours: Hours between collection runs
+        interval_hours: Hours between collection runs (default: 6 hours)
     """
     while True:
         try:
+            # Wait for the interval before first periodic run
+            await asyncio.sleep(interval_hours * 3600)
+            
             logger.info(f"⏰ Running periodic news collection (every {interval_hours}h)")
-            await auto_collect_news(quick_mode=False)
+            logger.info("🗑️  Clearing old articles and fetching fresh news...")
+            
+            # Clear old articles and collect fresh ones
+            await auto_collect_news(quick_mode=False, clear_old=True)
+            
+            logger.info("✅ Periodic news refresh complete!")
         except Exception as e:
             logger.error(f"❌ Periodic collection failed: {str(e)}")
-        
-        # Wait for next collection
-        await asyncio.sleep(interval_hours * 3600)
+            import traceback
+            logger.error(traceback.format_exc())

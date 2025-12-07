@@ -17,19 +17,41 @@ def cron_run():
     return run_cron_job()
 
 @router.post("/collect-news")
-async def collect_news_now(quick_mode: bool = True):
+async def collect_news_now(quick_mode: bool = True, clear_old: bool = False):
     """
     Manually trigger news collection from all sources.
     
     Args:
         quick_mode: If True, collect fewer articles (faster)
+        clear_old: If True, clear old articles before collecting new ones
     """
     try:
-        stats = await auto_collect_news(quick_mode=quick_mode)
+        stats = await auto_collect_news(quick_mode=quick_mode, clear_old=clear_old)
         total = sum(stats.values())
         return {
             "status": "success",
             "message": f"Collected {total} articles",
+            "details": stats,
+            "cleared_old": clear_old
+        }
+    except Exception as e:
+        return {
+            "status": "error",
+            "message": str(e)
+        }
+
+@router.post("/refresh-news")
+async def refresh_all_news():
+    """
+    Refresh all news: Clear old articles and fetch fresh ones.
+    This is like a complete database refresh.
+    """
+    try:
+        stats = await auto_collect_news(quick_mode=False, clear_old=True)
+        total = sum(stats.values())
+        return {
+            "status": "success",
+            "message": f"Database refreshed with {total} fresh articles",
             "details": stats
         }
     except Exception as e:
