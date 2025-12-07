@@ -733,6 +733,118 @@ To change ports, edit:
 - **Automated Refresh**: Every 6 hours
 - **Technologies Used**: 15+ (React, FastAPI, ChromaDB, LangChain, Llama 3.2, etc.)
 
+## 🚀 Free Deployment Options
+
+Deploy your platform **100% FREE** with these cloud providers:
+
+### 🏆 Recommended: Render.com (Easiest)
+
+**Free Tier:**
+- 750 hours/month per service
+- Automatic GitHub deployments
+- Custom domains
+- Free SSL certificates
+
+**Deploy All Services:**
+1. Create account at [render.com](https://render.com)
+2. Connect GitHub repository
+3. Create 3 services:
+   - **GenAI**: Python web service (Root: `genai-with-agentic-ai`, Start: `uvicorn main:app --host 0.0.0.0 --port $PORT`)
+   - **Backend**: Node.js web service (Root: `Backend`, Start: `node server.js`)
+   - **Frontend**: Static site (Root: `Frontend`, Build: `npm run build`, Publish: `dist`)
+4. Add environment variable `HUGGINGFACE_TOKEN` to GenAI service
+5. Deploy!
+
+**Cost:** $0/month (services sleep after 15min inactivity)
+
+### ⚡ Alternative: Vercel + HuggingFace Spaces
+
+**Best for Production:**
+
+**Frontend on Vercel (Unlimited Free):**
+```bash
+cd Frontend
+npm install -g vercel
+vercel --prod
+```
+
+**GenAI on HuggingFace Spaces (Free, 16GB RAM):**
+1. Create Space at [huggingface.co/spaces](https://huggingface.co/spaces)
+2. Upload `genai-with-agentic-ai` folder
+3. Add `HUGGINGFACE_TOKEN` secret
+4. Deploy with Docker or Gradio
+
+**Backend on Render (Free):**
+- Deploy as web service
+- Point to HuggingFace Spaces URL for GenAI
+
+**Cost:** $0/month (no sleep, better performance)
+
+### 🔧 Other Free Options
+
+| Platform | Frontend | Backend | GenAI | Notes |
+|----------|----------|---------|-------|-------|
+| **Railway.app** | ✅ | ✅ | ✅ | $5/month credit (enough for light usage) |
+| **Fly.io** | ✅ | ✅ | ✅ | 3 VMs free, 160GB bandwidth |
+| **Netlify** | ✅ | ❌ | ❌ | Frontend only, 100GB bandwidth |
+| **GitHub Pages** | ✅ | ❌ | ❌ | Static only, custom domain support |
+
+### ⚠️ Important Notes
+
+**Cold Starts:** Free services sleep after 15min inactivity (30-60s startup time)
+
+**Keep Alive:** Use [cron-job.org](https://cron-job.org) to ping every 14 minutes:
+```bash
+# Ping URLs every 14 minutes
+https://your-backend.onrender.com/
+https://your-genai.onrender.com/
+```
+
+**VectorDB Persistence:** Free tiers may lose data on restart. Consider:
+- Use persistent volumes (Render paid tier: $7/month)
+- Rebuild VectorDB on cold start
+- Use managed vector DB (Pinecone free tier: 100K vectors)
+
+**Memory Limits:** Free tiers typically 512MB-1GB RAM. May struggle with embeddings. Solutions:
+- Use smaller embedding model
+- Upgrade to paid tier ($7-15/month)
+- Split services across multiple free accounts
+
+### 📋 Quick Deploy to Render
+
+Create `render.yaml` in project root:
+
+```yaml
+services:
+  - type: web
+    name: ml-news-genai
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    rootDir: genai-with-agentic-ai
+    envVars:
+      - key: HUGGINGFACE_TOKEN
+        sync: false
+
+  - type: web
+    name: ml-news-backend
+    env: node
+    buildCommand: npm install
+    startCommand: node server.js
+    rootDir: Backend
+
+  - type: web
+    name: ml-news-frontend
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    rootDir: Frontend
+```
+
+Then: **Dashboard → New → Blueprint → Connect Repo → Deploy**
+
+**Deployment complete in ~5 minutes!** 🎉
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please follow these guidelines:
