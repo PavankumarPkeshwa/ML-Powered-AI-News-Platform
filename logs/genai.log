@@ -1,4 +1,5 @@
-INFO:     Started server process [32008]
+nohup: ignoring input
+INFO:     Started server process [12931]
 INFO:     Waiting for application startup.
 INFO:main:🚀 Starting GenAI News Service...
 INFO:main:📰 AI-powered news collection ready
@@ -8,173 +9,211 @@ INFO:main:⏰ Automatic news updates every 6 hours
 INFO:main:💡 Trigger manual collection: POST /scraper/refresh-news
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+✅ HuggingFace token loaded: hf_MVTPAme...
+INFO:     103.205.152.155:0 - "GET / HTTP/1.1" 200 OK
+INFO:     103.205.152.155:0 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:agents.supervisor_agent:🗑️  Clearing old articles from VectorDB...
 /workspaces/ML-Powered-AI-News-Platform/genai-with-agentic-ai/rag/embedder.py:30: LangChainDeprecationWarning: The class `HuggingFaceEmbeddings` was deprecated in LangChain 0.2.2 and will be removed in 1.0. An updated version of the class exists in the `langchain-huggingface package and should be used instead. To use it run `pip install -U `langchain-huggingface` and import as `from `langchain_huggingface import HuggingFaceEmbeddings``.
   embedding_model = HuggingFaceEmbeddings(
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
 INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
 /workspaces/ML-Powered-AI-News-Platform/genai-with-agentic-ai/rag/vectordb.py:29: LangChainDeprecationWarning: The class `Chroma` was deprecated in LangChain 0.2.9 and will be removed in 1.0. An updated version of the class exists in the `langchain-chroma package and should be used instead. To use it run `pip install -U `langchain-chroma` and import as `from `langchain_chroma import Chroma``.
   vectordb = Chroma(
 INFO:chromadb.telemetry.product.posthog:Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
-INFO:chromadb.telemetry.product.posthog:Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
-INFO:chromadb.telemetry.product.posthog:Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
-✅ HuggingFace token loaded: hf_uexchrb...
-INFO:     127.0.0.1:40628 - "GET /news/featured HTTP/1.1" 200 OK
-INFO:     127.0.0.1:40654 - "GET /news/trending?limit=3 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:40644 - "GET /news/fetch?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:api.chat_api:🔄 Initializing Llama 3.2 via HuggingFace API (serverless)...
-INFO:api.chat_api:   Token: hf_uexchrb...
-INFO:api.chat_api:✅ Llama 3.2 API ready! (serverless, no downloads)
-INFO:httpx:HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
-🔍 Category: Technology
-🤖 Using LLM for analytical response...
-✅ HuggingFace API LLM initialized with meta-llama/Llama-3.2-3B-Instruct:novita
-INFO:     127.0.0.1:36808 - "POST /chat/message HTTP/1.1" 200 OK
-INFO:httpx:HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
-🔍 Category: None
-🤖 Using LLM for analytical response...
-INFO:     127.0.0.1:59922 - "POST /chat/message HTTP/1.1" 200 OK
-INFO:     127.0.0.1:48024 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:48024 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:48024 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:38760 - "GET /news/fetch?category=Business&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:38760 - "GET /news/fetch?category=Business&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:38760 - "GET /news/fetch?category=Business&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:46698 - "GET /news/fetch?category=Science&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:46698 - "GET /news/fetch?category=Science&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:46698 - "GET /news/fetch?category=Science&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:41590 - "GET /news/fetch?category=Health&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:41590 - "GET /news/fetch?category=Health&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:41590 - "GET /news/fetch?category=Health&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:42774 - "GET /news/fetch?category=Sports&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:42774 - "GET /news/fetch?category=Sports&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:42774 - "GET /news/fetch?category=Sports&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:42774 - "GET /news/fetch?category=Entertainment&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:42774 - "GET /news/fetch?category=Entertainment&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:42774 - "GET /news/fetch?category=Entertainment&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:51572 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:51572 - "GET /news/fetch?category=Business&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:51572 - "GET /news/fetch?category=Science&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:35260 - "GET /news/fetch?category=Science&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:35260 - "GET /news/fetch?category=Science&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:35260 - "GET /news/fetch?category=Science&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:35260 - "GET /news/featured HTTP/1.1" 200 OK
-INFO:     127.0.0.1:35264 - "GET /news/trending?limit=3 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:35278 - "GET /news/fetch?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:backoff:Backing off send_request(...) for 0.5s (requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Read timed out. (read timeout=15))
-INFO:     127.0.0.1:48980 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:48980 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:48980 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:httpx:HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
-🔍 Category: Technology
-🤖 Using LLM for analytical response...
-INFO:     127.0.0.1:33870 - "POST /chat/message HTTP/1.1" 200 OK
-INFO:     127.0.0.1:35760 - "GET /news/fetch?category=Business&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:35760 - "GET /news/fetch?category=Business&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:35760 - "GET /news/fetch?category=Business&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:35760 - "GET /news/fetch?category=Science&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:35760 - "GET /news/fetch?category=Science&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:35760 - "GET /news/fetch?category=Science&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:35760 - "GET /news/fetch?category=Health&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:35760 - "GET /news/fetch?category=Health&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:35760 - "GET /news/fetch?category=Health&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:35760 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:35760 - "GET /news/fetch?limit=100 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:52522 - "DELETE /chat/conversation/conv_1765124041194 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:37662 - "GET /news/featured HTTP/1.1" 200 OK
-INFO:     127.0.0.1:37670 - "GET /news/trending?limit=3 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:37684 - "GET /news/fetch?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:37684 - "GET /news/fetch?category=Science&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:37684 - "GET /news/fetch?category=Science&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:37684 - "GET /news/fetch?category=Science&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:37684 - "GET /news/fetch?limit=100 HTTP/1.1" 200 OK
-INFO:backoff:Backing off send_request(...) for 1.0s (requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Read timed out. (read timeout=15))
-INFO:httpx:HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
-🔍 Category: Technology
-🤖 Using LLM for analytical response...
-INFO:     127.0.0.1:39268 - "POST /chat/message HTTP/1.1" 200 OK
-INFO:httpx:HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
-🔍 Category: Technology
-🤖 Using LLM for analytical response...
-INFO:     127.0.0.1:58598 - "POST /chat/message HTTP/1.1" 200 OK
-INFO:httpx:HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
-🔍 Category: Health
-🤖 Using LLM for analytical response...
-INFO:     127.0.0.1:37836 - "POST /chat/message HTTP/1.1" 200 OK
-INFO:     127.0.0.1:46730 - "GET /health HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:59802 - "GET /health HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:52928 - "GET / HTTP/1.1" 200 OK
-INFO:httpx:HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
-🔍 Category: Technology
-🤖 Using LLM for analytical response...
-INFO:     127.0.0.1:38410 - "POST /chat/message HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49796 - "GET /news/fetch?limit=100 HTTP/1.1" 200 OK
-INFO:backoff:Backing off send_request(...) for 0.3s (requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Read timed out. (read timeout=15))
-INFO:httpx:HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
-🔍 Category: Technology
-🤖 Using LLM for analytical response...
-INFO:     127.0.0.1:60360 - "POST /chat/message HTTP/1.1" 200 OK
-INFO:     127.0.0.1:57422 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:57422 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:57422 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:57422 - "GET /news/fetch?limit=100 HTTP/1.1" 200 OK
-INFO:httpx:HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
-🔍 Category: Technology
-🤖 Using LLM for analytical response...
-INFO:     127.0.0.1:56716 - "POST /chat/message HTTP/1.1" 200 OK
-INFO:     127.0.0.1:39138 - "GET /news/fetch?limit=100 HTTP/1.1" 200 OK
-INFO:httpx:HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
-🔍 Category: Health
-🤖 Using LLM for analytical response...
-INFO:     127.0.0.1:48368 - "POST /chat/message HTTP/1.1" 200 OK
-INFO:     127.0.0.1:39172 - "GET /news/trending?limit=3 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:39170 - "GET /news/featured HTTP/1.1" 200 OK
-INFO:     127.0.0.1:39176 - "GET /news/fetch?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:httpx:HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
-🔍 Category: Health
-🤖 Using LLM for analytical response...
-INFO:     127.0.0.1:39184 - "POST /chat/message HTTP/1.1" 200 OK
-INFO:backoff:Backing off send_request(...) for 0.1s (requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Read timed out. (read timeout=15))
-INFO:     127.0.0.1:40064 - "DELETE /chat/conversation/conv_1765129109949 HTTP/1.1" 200 OK
-INFO:httpx:HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
-🔍 Category: Technology
-🤖 Using LLM for analytical response...
-INFO:     127.0.0.1:40064 - "POST /chat/message HTTP/1.1" 200 OK
-INFO:     127.0.0.1:51008 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:51008 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:51008 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:51008 - "GET /news/fetch?limit=100 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:54400 - "GET /news/fetch?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:backoff:Backing off send_request(...) for 0.5s (requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Read timed out. (read timeout=15))
-INFO:     127.0.0.1:47548 - "GET /news/fetch?limit=100 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:34372 - "GET /news/fetch?limit=100 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:34372 - "GET /news/featured HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45086 - "GET /news/trending?limit=3 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45086 - "GET /news/fetch?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:httpx:HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
-🔍 Category: Technology
-🤖 Using LLM for analytical response...
-INFO:     127.0.0.1:45092 - "POST /chat/message HTTP/1.1" 200 OK
-INFO:     127.0.0.1:36458 - "GET /news/trending?limit=3 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:36472 - "GET /news/featured HTTP/1.1" 200 OK
-INFO:     127.0.0.1:36488 - "GET /news/fetch?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:httpx:HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
-🔍 Category: Health
-🤖 Using LLM for analytical response...
-INFO:     127.0.0.1:47792 - "POST /chat/message HTTP/1.1" 200 OK
-INFO:     127.0.0.1:58508 - "POST /chat HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:52466 - "GET / HTTP/1.1" 200 OK
-INFO:     127.0.0.1:40524 - "GET / HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59232 - "POST /chat?message=technology%20news&conversation_id=test HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:39968 - "GET /news/featured HTTP/1.1" 200 OK
-INFO:     127.0.0.1:39968 - "GET /news/trending?limit=3 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:39968 - "GET /news/fetch?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:httpx:HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
-🔍 Category: Technology
-🤖 Using LLM for analytical response...
-INFO:     127.0.0.1:39978 - "POST /chat/message HTTP/1.1" 200 OK
-INFO:backoff:Backing off send_request(...) for 0.2s (requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Read timed out. (read timeout=15))
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [32008]
+INFO:agents.supervisor_agent:✅ Old articles cleared from VectorDB
+INFO:agents.supervisor_agent:🚀 Starting AI-powered news collection...
+INFO:agents.supervisor_agent:🤖 Agent Pipeline: Manager → Scraper → Validator → VectorDB
+INFO:agents.supervisor_agent:📡 Using RSS feeds + article discovery for better content
+INFO:agents.supervisor_agent:🔍 Collecting Technology news...
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://techcrunch.com/feed/ (Technology)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+/workspaces/ML-Powered-AI-News-Platform/genai-with-agentic-ai/agents/supervisor_agent.py:103: LangChainDeprecationWarning: Since Chroma 0.4.x the manual persistence method is no longer supported as docs are automatically persisted.
+  vectordb.persist()
+INFO:agents.supervisor_agent:✅ Article collected: https://techcrunch.com/2025/12/08/google-details-security-measures-for-chromes-a...
+INFO:agents.supervisor_agent:✅ Article collected: https://techcrunch.com/2025/12/08/you-can-buy-your-instacart-groceries-without-l...
+INFO:agents.supervisor_agent:✅ Article collected: https://techcrunch.com/2025/12/08/tiktok-adds-a-space-for-organizing-content-wit...
+INFO:agents.supervisor_agent:✅ 3 articles from https://techcrunch.com/feed/
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.theverge.com/rss/index.xml (Technology)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://www.theverge.com/news/840124/lenovo-rollable-legion-pro-gaming-laptop-ru...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.theverge.com/entertainment/840080/square-enix-hd2d-games-octopath-dr...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.theverge.com/news/840164/iceblock-joshua-aaron-sues-trump-administra...
+INFO:agents.supervisor_agent:✅ 3 articles from https://www.theverge.com/rss/index.xml
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://feeds.arstechnica.com/arstechnica/index (Technology)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://arstechnica.com/cars/2025/12/f1-in-abu-dhabi-and-thats-the-championship/...
+INFO:agents.supervisor_agent:✅ Article collected: https://arstechnica.com/cars/2025/12/lectric-xpress-750-a-full-sized-bike-for-th...
+INFO:agents.supervisor_agent:✅ 2 articles from https://feeds.arstechnica.com/arstechnica/index
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.wired.com/feed/rss (Technology)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.engadget.com/rss.xml (Technology)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://www.engadget.com/techs-biggest-winners-of-2025-180000177.html?src=rss...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.engadget.com/wearables/heres-how-google-is-laying-the-foundation-for...
+INFO:agents.supervisor_agent:✅ 2 articles from https://www.engadget.com/rss.xml
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://mashable.com/feeds/rss/all (Technology)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://mashable.com/article/dec-8-disney-plus-perks...
+INFO:agents.supervisor_agent:✅ Article collected: https://mashable.com/article/apple-product-launches-to-expect-early-2026...
+INFO:agents.supervisor_agent:✅ Article collected: https://mashable.com/article/dec-8-dji-mic-mini-deal...
+INFO:agents.supervisor_agent:✅ 3 articles from https://mashable.com/feeds/rss/all
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.cnet.com/rss/news/ (Technology)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://www.cnet.com/tech/gaming/analogue-3d-game-console-rolls-out-throwback-tr...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.cnet.com/tech/mobile/apples-iphone-17-vs-samsungs-galaxy-s25-compari...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.cnet.com/culture/pennies-are-over-so-what-do-we-do-with-those-1-cent...
+INFO:agents.supervisor_agent:✅ 3 articles from https://www.cnet.com/rss/news/
+INFO:agents.supervisor_agent:✅ Technology: 16 articles collected successfully
+INFO:agents.supervisor_agent:🔍 Collecting Business news...
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://feeds.bbci.co.uk/news/business/rss.xml (Business)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://www.bbc.com/news/articles/cj69xzpzrdyo?at_medium=RSS&at_campaign=rss...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.bbc.com/news/articles/cn815egjqjpo?at_medium=RSS&at_campaign=rss...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.bbc.com/news/articles/c0589g0dqq7o?at_medium=RSS&at_campaign=rss...
+INFO:agents.supervisor_agent:✅ 3 articles from https://feeds.bbci.co.uk/news/business/rss.xml
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.cnbc.com/id/10001147/device/rss/rss.html (Business)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://feeds.bloomberg.com/markets/news.rss (Business)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.ft.com/?format=rss (Business)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://www.ft.com/content/7981af0e-ad93-4c11-8c1c-09b0167bf4d6...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.ft.com/content/b49cd2de-f95d-47d3-bba0-cdb619176a84...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.ft.com/content/443baf96-75cf-46a4-b69b-df9b47792676...
+INFO:agents.supervisor_agent:✅ 3 articles from https://www.ft.com/?format=rss
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.forbes.com/business/feed/ (Business)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.businessinsider.com/rss (Business)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://www.businessinsider.com/best-states-to-visit-in-winter-united-states...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.businessinsider.com/paramount-wbd-saudi-arabia-qatar-abu-dhabi-ellli...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.businessinsider.com/meet-david-ellison-paramount-skydance-ceo-2025-1...
+INFO:agents.supervisor_agent:✅ 3 articles from https://www.businessinsider.com/rss
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.wsj.com/xml/rss/3_7085.xml (Business)
+INFO:agents.scraper_agent:📰 Found 0 articles from RSS feed
+WARNING:agents.supervisor_agent:⚠️  No articles found from https://www.wsj.com/xml/rss/3_7085.xml
+INFO:agents.supervisor_agent:✅ Business: 9 articles collected successfully
+INFO:agents.supervisor_agent:🔍 Collecting Science news...
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.scientificamerican.com/feed/ (Science)
+INFO:agents.scraper_agent:📰 Found 0 articles from RSS feed
+WARNING:agents.supervisor_agent:⚠️  No articles found from https://www.scientificamerican.com/feed/
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://phys.org/rss-feed/ (Science)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://phys.org/news/2025-12-parental-child-abduction-criminalization.html...
+INFO:agents.supervisor_agent:✅ Article collected: https://phys.org/news/2025-12-oceans-weak-cyclones-deadly-rainmakers.html...
+INFO:agents.supervisor_agent:✅ Article collected: https://phys.org/news/2025-12-sanctuary-policing-policies-facade.html...
+INFO:agents.supervisor_agent:✅ 3 articles from https://phys.org/rss-feed/
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.nature.com/nature.rss (Science)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.sciencedaily.com/rss/all.xml (Science)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.sciencenews.org/feed (Science)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.newscientist.com/feed/home (Science)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://www.newscientist.com/article/2502370-too-busy-to-meditate-microdosing-mi...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.newscientist.com/article/2503844-are-we-living-in-a-simulation-this-...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.newscientist.com/article/mg26835722-200-human-challenge-trials-have-...
+INFO:agents.supervisor_agent:✅ 3 articles from https://www.newscientist.com/feed/home
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.livescience.com/feeds/all (Science)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Science: 6 articles collected successfully
+INFO:agents.supervisor_agent:🔍 Collecting Health news...
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://feeds.bbci.co.uk/news/health/rss.xml (Health)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://www.bbc.com/news/articles/cm2087g0z9po?at_medium=RSS&at_campaign=rss...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.bbc.com/news/articles/cx2pvxdn9v4o?at_medium=RSS&at_campaign=rss...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.bbc.com/news/articles/c74xqn2zg1eo?at_medium=RSS&at_campaign=rss...
+INFO:agents.supervisor_agent:✅ 3 articles from https://feeds.bbci.co.uk/news/health/rss.xml
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.medicalnewstoday.com/rss/news.xml (Health)
+INFO:agents.scraper_agent:📰 Found 0 articles from RSS feed
+WARNING:agents.supervisor_agent:⚠️  No articles found from https://www.medicalnewstoday.com/rss/news.xml
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.healthline.com/feeds/rss (Health)
+INFO:agents.scraper_agent:📰 Found 0 articles from RSS feed
+WARNING:agents.supervisor_agent:⚠️  No articles found from https://www.healthline.com/feeds/rss
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.webmd.com/rss/rss.aspx (Health)
+INFO:agents.scraper_agent:📰 Found 0 articles from RSS feed
+WARNING:agents.supervisor_agent:⚠️  No articles found from https://www.webmd.com/rss/rss.aspx
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://health.harvard.edu/feed (Health)
+INFO:agents.scraper_agent:📰 Found 0 articles from RSS feed
+WARNING:agents.supervisor_agent:⚠️  No articles found from https://health.harvard.edu/feed
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.mayoclinic.org/rss (Health)
+INFO:agents.scraper_agent:📰 Found 0 articles from RSS feed
+WARNING:agents.supervisor_agent:⚠️  No articles found from https://www.mayoclinic.org/rss
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.nih.gov/feeds/news.xml (Health)
+INFO:agents.scraper_agent:📰 Found 0 articles from RSS feed
+WARNING:agents.supervisor_agent:⚠️  No articles found from https://www.nih.gov/feeds/news.xml
+INFO:agents.supervisor_agent:✅ Health: 3 articles collected successfully
+INFO:agents.supervisor_agent:🔍 Collecting Sports news...
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://feeds.bbci.co.uk/sport/rss.xml (Sports)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.espn.com/espn/rss/news (Sports)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://www.espn.com/nfl/story/_/id/47236762/2025-nfl-week-14-playoff-picture-ja...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.espn.com/nfl/story/_/id/47214975/nfl-week-14-2025-season-questions-t...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.espn.com/college-football/story/_/id/47247217/notre-dame-ad-rips-acc...
+INFO:agents.supervisor_agent:✅ 3 articles from https://www.espn.com/espn/rss/news
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.cbssports.com/rss/headlines/ (Sports)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://www.cbssports.com/nfl/news/chargers-vs-eagles-where-to-watch-pick-odds-p...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.cbssports.com/nfl/news/use-draftkings-promo-code-to-get-200-bonus-be...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.cbssports.com/nfl/news/chiefs-dynasty-life-support-2026-has-potentia...
+INFO:agents.supervisor_agent:✅ 3 articles from https://www.cbssports.com/rss/headlines/
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://sports.yahoo.com/rss/ (Sports)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://sports.yahoo.com/articles/5-things-watch-usc-mens-183351873.html...
+INFO:agents.supervisor_agent:✅ Article collected: https://sports.yahoo.com/articles/libertadores-40-7-spots-left-183300592.html...
+INFO:agents.supervisor_agent:✅ Article collected: https://sports.yahoo.com/articles/4-snap-count-observations-colts-183224405.html...
+INFO:agents.supervisor_agent:✅ 3 articles from https://sports.yahoo.com/rss/
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.foxsports.com/rss (Sports)
+INFO:agents.scraper_agent:📰 Found 0 articles from RSS feed
+WARNING:agents.supervisor_agent:⚠️  No articles found from https://www.foxsports.com/rss
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.skysports.com/rss/12040 (Sports)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.theguardian.com/sport/rss (Sports)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://www.theguardian.com/football/live/2025/dec/08/fa-cup-third-round-draw-wi...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.theguardian.com/football/2025/dec/08/mohamed-salah-training-speculat...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.theguardian.com/football/2025/dec/08/premier-league-10-talking-point...
+INFO:agents.supervisor_agent:✅ 3 articles from https://www.theguardian.com/sport/rss
+INFO:agents.supervisor_agent:✅ Sports: 12 articles collected successfully
+INFO:agents.supervisor_agent:🔍 Collecting Entertainment news...
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://variety.com/feed/ (Entertainment)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://deadline.com/feed/ (Entertainment)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://deadline.com/2025/12/golden-globes-analysis-arthouse-rules-film-emmy-win...
+INFO:agents.supervisor_agent:✅ Article collected: https://deadline.com/2025/12/box-office-five-nights-at-freddys-2-zootopia-2-1236...
+INFO:agents.supervisor_agent:✅ Article collected: https://deadline.com/2025/12/bill-lawrence-hbo-comedy-title-rooster-steve-carell...
+INFO:agents.supervisor_agent:✅ 3 articles from https://deadline.com/feed/
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.hollywoodreporter.com/feed/ (Entertainment)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://ew.com/feed/ (Entertainment)
+INFO:agents.scraper_agent:📰 Found 0 articles from RSS feed
+WARNING:agents.supervisor_agent:⚠️  No articles found from https://ew.com/feed/
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.indiewire.com/feed/ (Entertainment)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.avclub.com/rss (Entertainment)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.rollingstone.com/music/rss/ (Entertainment)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Entertainment: 3 articles collected successfully
+INFO:agents.supervisor_agent:🎉 AI collection complete! 49 real articles from internet
+INFO:agents.supervisor_agent:📊 Sources processed: 42 sources
+INFO:agents.supervisor_agent:📡 Collection methods: RSS feeds + article discovery
+INFO:     127.0.0.1:57640 - "POST /scraper/refresh-news HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37654 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35280 - "GET /news/trending?limit=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35284 - "GET /news/fetch?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35292 - "GET /news/featured HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35838 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37406 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37406 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37406 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40116 - "GET /news/fetch?category=Business&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40116 - "GET /news/fetch?category=Business&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40116 - "GET /news/fetch?category=Business&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42180 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42180 - "GET /news/fetch?category=Business&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42180 - "GET /news/fetch?category=Science&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42180 - "GET /news/fetch?category=Science&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42180 - "GET /news/fetch?category=Science&limit=20&offset=0 HTTP/1.1" 200 OK

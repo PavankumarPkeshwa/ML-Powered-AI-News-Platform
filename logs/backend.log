@@ -1,13 +1,8 @@
 nohup: ignoring input
-[dotenv@17.2.1] injecting env (2) from .env -- tip: 📡 version env with Radar: https://dotenvx.com/radar
+[dotenv@17.2.1] injecting env (2) from .env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
 🚀 Backend Server running at http://localhost:5000
 📡 Connecting to GenAI Service at http://localhost:8000
-⚠️  GenAI Service not yet available. Make sure it's running on http://localhost:8000
-🔍 Fetching articles from GenAI service: { category: undefined, limit: 20, offset: 0 }
-Error fetching featured article: Error
-Error fetching articles: Error
-Error fetching trending articles: Error
-🔍 Fetching articles from GenAI service: { category: undefined, limit: 20, offset: 0 }
+✅ GenAI Service connected: GenAI Service Running 🚀
 🔍 Fetching articles from GenAI service: { category: undefined, limit: 20, offset: 0 }
 🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
 🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
@@ -15,138 +10,8 @@ Error fetching trending articles: Error
 🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
 🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
 🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Science', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Science', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Science', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Health', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Health', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Health', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Sports', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Sports', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Sports', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Entertainment', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Entertainment', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Entertainment', limit: 20, offset: 0 }
-Fetching article with ID: 65551809-ade4-4b55-ae63-44844b7c3ae3
-🔍 Fetching articles from GenAI service: { category: 'Entertainment', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Sports', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Entertainment', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Entertainment', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Entertainment', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Entertainment', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: undefined, limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
-Fetching article with ID: b474f43c-64a1-4b1c-a5d7-85ff5e4c0fee
-🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: undefined, limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: undefined, limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Science', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Science', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Science', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Health', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Health', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Health', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Entertainment', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Entertainment', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Entertainment', limit: 20, offset: 0 }
-Fetching article with ID: e6ea7a95-f4af-4b8f-81ce-796f20df2a8c
-Error fetching featured article: Error
-🔍 Fetching articles from GenAI service: { category: undefined, limit: 20, offset: 0 }
-Error fetching articles: Error
-Error fetching trending articles: Error
-🔍 Fetching articles from GenAI service: { category: undefined, limit: 20, offset: 0 }
-💬 Sending message to chatbot: What are the latest technology news?
-💬 Sending message to chatbot: what is holiday shoppers
-🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Science', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Science', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Science', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Health', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Health', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Health', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Sports', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Sports', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Sports', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Entertainment', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Entertainment', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Entertainment', limit: 20, offset: 0 }
 🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
 🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
 🔍 Fetching articles from GenAI service: { category: 'Science', limit: 20, offset: 0 }
 🔍 Fetching articles from GenAI service: { category: 'Science', limit: 20, offset: 0 }
 🔍 Fetching articles from GenAI service: { category: 'Science', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Science', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: undefined, limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
-💬 Sending message to chatbot: Tell me about AI breakthroughs
-🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Science', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Science', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Science', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Health', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Health', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Health', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
-Fetching article with ID: b68a77d1-9484-4b76-96c4-914c15eae923
-🔍 Fetching articles from GenAI service: { category: undefined, limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Science', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Science', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Science', limit: 20, offset: 0 }
-Fetching article with ID: 9a0fb73d-4b76-4aaa-b296-93b15659d6ba
-💬 Sending message to chatbot: can you summarize about srilanka unveils cyclone aid plan new
-💬 Sending message to chatbot: Sri Lanka unveils cyclone aid plan as rains persist
-💬 Sending message to chatbot: health related articles
-💬 Sending message to chatbot: Sri Lanka unveils cyclone aid plan as rains persist
-Fetching article with ID: 9a0fb73d-4b76-4aaa-b296-93b15659d6ba
-💬 Sending message to chatbot: Sri Lanka unveils cyclone aid plan as rains persist
-🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
-Fetching article with ID: b68a77d1-9484-4b76-96c4-914c15eae923
-💬 Sending message to chatbot: OpenAI says it’s turned off app suggestions that look like ads ?
-Fetching article with ID: b68a77d1-9484-4b76-96c4-914c15eae923
-💬 Sending message to chatbot: What health news do you have?
-🔍 Fetching articles from GenAI service: { category: undefined, limit: 20, offset: 0 }
-💬 Sending message to chatbot: What health news do you have?
-💬 Sending message to chatbot: Tell me about AI breakthroughs
-🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
-Fetching article with ID: 2da8b06f-eab7-40e9-8e9f-8037e972ef23
-🔍 Fetching articles from GenAI service: { category: undefined, limit: 20, offset: 0 }
-Fetching article with ID: b68a77d1-9484-4b76-96c4-914c15eae923
-Fetching article with ID: 2da8b06f-eab7-40e9-8e9f-8037e972ef23
-🔍 Fetching articles from GenAI service: { category: undefined, limit: 20, offset: 0 }
-💬 Sending message to chatbot: What are the latest technology news?
-🔍 Fetching articles from GenAI service: { category: undefined, limit: 20, offset: 0 }
-💬 Sending message to chatbot: What health news do you have?
-🔍 Fetching articles from GenAI service: { category: undefined, limit: 20, offset: 0 }
-💬 Sending message to chatbot: What are the latest technology news?
-🔍 Fetching articles from GenAI service: { category: undefined, limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: undefined, limit: 20, offset: 0 }
-💬 Sending message to chatbot: What health news do you have?
-Fetching article with ID: 59d2726c-0939-4246-9646-14f335bbb36f
-💬 Sending message to chatbot: Hospitals facing unprecedented flu season, say NHS bosses Health
-🔍 Fetching articles from GenAI service: { category: 'Health', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Health', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Health', limit: 20, offset: 0 }

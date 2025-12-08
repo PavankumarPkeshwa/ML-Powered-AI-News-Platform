@@ -4,8 +4,7 @@ nohup: ignoring input
 > vite
 
 
-  VITE v7.2.6  ready in 197 ms
+  VITE v7.2.7  ready in 234 ms
 
   ➜  Local:   http://localhost:5173/
   ➜  Network: use --host to expose
-6:35:38 PM [vite] (client) hmr update /src/components/chatbot.tsx, /src/index.css
