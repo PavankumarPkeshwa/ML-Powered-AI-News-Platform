@@ -1,5 +1,4 @@
-# 🤖 ML-Powered AI News Platform
-
+# 🤖 Agentic AI News Intelligence Platform (RAG-based)
 A fully intelligent news aggregation platform powered by **AI Agents**, **RAG (Retrieval Augmented Generation)**, **RSS Feed Collection**, and **Llama 3.2 LLM**. The system automatically collects real news articles from the internet using AI agents and provides an intelligent chatbot for news queries.
 
 ## 🚀 Quick Start
