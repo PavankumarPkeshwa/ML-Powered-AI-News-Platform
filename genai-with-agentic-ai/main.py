@@ -67,6 +67,15 @@ async def startup_event():
     
     # Start periodic collection (every 6 hours) - first run will happen after 6 hours
     from agents.supervisor_agent import periodic_news_collection
+    # Trigger an initial collection in background so UI has content on first run.
+    # `initialize_news_collection` will try real collection and optionally fall back to samples.
+    try:
+        from agents.supervisor_agent import initialize_news_collection
+        # Do not load sample articles on startup; only populate UI when real scraping succeeds
+        asyncio.create_task(initialize_news_collection(use_samples=False))
+    except Exception:
+        logger.warning("⚠️ Could not schedule initial collection task")
+
     asyncio.create_task(periodic_news_collection(interval_hours=6))
     
     logger.info("✅ Service ready!")

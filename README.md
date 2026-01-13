@@ -1,4 +1,5 @@
-# 🤖 Agentic AI News Intelligence Platform (RAG-based)
+# 🤖 Agentic AI News Intillegence Platform
+
 A fully intelligent news aggregation platform powered by **AI Agents**, **RAG (Retrieval Augmented Generation)**, **RSS Feed Collection**, and **Llama 3.2 LLM**. The system automatically collects real news articles from the internet using AI agents and provides an intelligent chatbot for news queries.
 
 ## 🚀 Quick Start
@@ -49,6 +50,20 @@ bash scripts/start-all.sh
 - 🤖 GenAI Service: http://localhost:8000
 - 🔧 Backend API: http://localhost:5000
 - 🎨 Frontend UI: http://localhost:5173
+
+> **Note (Agentic runtime / optional):** For the full agentic runtime (planner + queue + workers) the system can use Redis + RQ. If you plan to use the queue-backed planner/worker flow, start a Redis server and an RQ worker before starting services. If Redis/RQ are not running the code will fall back to in-process execution, but distributed task processing requires Redis.
+
+Example commands (local Docker + RQ):
+
+```bash
+# Start Redis (Docker)
+docker run -d --name redis -p 6379:6379 redis:7
+
+# In a shell for the GenAI service, start an RQ worker (requires `rq` installed in the GenAI venv)
+cd genai-with-agentic-ai
+# Start a worker that processes queued tasks
+rq worker &
+```
 
 ### 4. Trigger News Collection
 
@@ -160,6 +175,17 @@ Start GenAI Service → Initialize FastAPI → Load .env (if exists)
 #### 2. **News Collection Pipeline** (Manual or Automatic)
 ```
 Trigger: POST /scraper/refresh-news OR Automated 6-hour interval
+
+LangGraph Supervisor (experimental):
+
+- Added a minimal LangGraph-based supervisor to automate decisions between scraping and answering.
+- Endpoint: `POST /agent/langgraph/run?query=...` — the supervisor will decide to run the scraper (if query contains keywords like `latest`, `today`, `breaking`, `refresh`) or call the RAG chatbot directly. If scraping runs, the RAG responder is invoked afterward to answer the original query.
+
+Example:
+```bash
+curl -X POST "http://localhost:8000/agent/langgraph/run?query=latest+technology+news"
+```
+
                                 ↓
         Clear Old Articles from VectorDB
                                 ↓

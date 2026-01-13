@@ -1,17 +1,20 @@
-nohup: ignoring input
-[dotenv@17.2.1] injecting env (2) from .env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+
+> backend@1.0.0 dev
+> nodemon server.js
+
+[33m[nodemon] 3.1.10[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: js,mjs,cjs,json[39m
+[32m[nodemon] starting `node server.js`[39m
+[dotenv@17.2.1] injecting env (2) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
 🚀 Backend Server running at http://localhost:5000
 📡 Connecting to GenAI Service at http://localhost:8000
-✅ GenAI Service connected: GenAI Service Running 🚀
+⚠️  GenAI Service not yet available. Make sure it's running on http://localhost:8000
 🔍 Fetching articles from GenAI service: { category: undefined, limit: 20, offset: 0 }
 🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
 🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
 🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Technology', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Business', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Science', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Science', limit: 20, offset: 0 }
-🔍 Fetching articles from GenAI service: { category: 'Science', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Entertainment', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Entertainment', limit: 20, offset: 0 }
+🔍 Fetching articles from GenAI service: { category: 'Entertainment', limit: 20, offset: 0 }
