@@ -6,12 +6,16 @@ langchain
 langchain-community
 langchain-core
 
+# LangGraph for agentic decision orchestration
+langgraph
+
 # Embeddings
 sentence-transformers
 
 # HuggingFace free models
 transformers
 huggingface-hub
+openai
 
 # Vector DB (Chroma)
 chromadb

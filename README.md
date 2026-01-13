@@ -161,6 +161,17 @@ Start GenAI Service → Initialize FastAPI → Load .env (if exists)
 #### 2. **News Collection Pipeline** (Manual or Automatic)
 ```
 Trigger: POST /scraper/refresh-news OR Automated 6-hour interval
+
+LangGraph Supervisor (experimental):
+
+- Added a minimal LangGraph-based supervisor to automate decisions between scraping and answering.
+- Endpoint: `POST /agent/langgraph/run?query=...` — the supervisor will decide to run the scraper (if query contains keywords like `latest`, `today`, `breaking`, `refresh`) or call the RAG chatbot directly. If scraping runs, the RAG responder is invoked afterward to answer the original query.
+
+Example:
+```bash
+curl -X POST "http://localhost:8000/agent/langgraph/run?query=latest+technology+news"
+```
+
                                 ↓
         Clear Old Articles from VectorDB
                                 ↓

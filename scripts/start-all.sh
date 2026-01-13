@@ -64,6 +64,17 @@ fi
 echo -e "${GREEN}Dependencies installed!${NC}"
 echo ""
 
+# Set up GenAI Python venv and install Python dependencies if needed
+if [ ! -d "genai-with-agentic-ai/.venv" ]; then
+    echo -e "${BLUE}Creating Python venv for GenAI...${NC}"
+    python -m venv genai-with-agentic-ai/.venv
+    echo -e "${BLUE}Installing GenAI Python dependencies...${NC}"
+    genai-with-agentic-ai/.venv/bin/python -m pip install --upgrade pip setuptools wheel
+    genai-with-agentic-ai/.venv/bin/python -m pip install -r genai-with-agentic-ai/requirements.txt
+else
+    echo -e "${BLUE}Using existing GenAI venv...${NC}"
+fi
+
 # Create .env file for Backend if it doesn't exist
 if [ ! -f "Backend/.env" ]; then
     echo -e "${BLUE}Creating Backend .env file...${NC}"
@@ -77,7 +88,11 @@ echo ""
 # Start GenAI Service
 echo -e "${BLUE}Starting GenAI Service on port 8000...${NC}"
 cd genai-with-agentic-ai
-python -m uvicorn main:app --reload --port 8000 > ../logs/genai.log 2>&1 &
+if [ -f ".venv/bin/python" ]; then
+    .venv/bin/python -m uvicorn main:app --reload --port 8000 > ../logs/genai.log 2>&1 &
+else
+    python -m uvicorn main:app --reload --port 8000 > ../logs/genai.log 2>&1 &
+fi
 GENAI_PID=$!
 cd ..
 sleep 3
