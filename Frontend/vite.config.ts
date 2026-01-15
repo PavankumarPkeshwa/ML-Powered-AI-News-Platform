@@ -3,6 +3,9 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
+const BACKEND_URL =
+  process.env.VITE_BACKEND_BASE_URL || "http://localhost:5000";
+
 export default defineConfig({
   plugins: [
     react(),
@@ -31,7 +34,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:5000",
+        target: BACKEND_URL||"http://localhost:5000",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, "/api"),
       },
