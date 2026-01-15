@@ -26,8 +26,8 @@ const axios = require("axios");
 const PORT = process.env.PORT || 5000;
 
 // ✅ Use Hugging Face URL via env variable
-const GENAI_BASE_URL =
-  process.env.GENAI_BASE_URL || "http://localhost:8000";
+const GENAI_SERVICE_URL =
+  process.env.GENAI_SERVICE_URL || "http://localhost:8000";
 
 // Axios client for GenAI
 const genaiClient = axios.create({
