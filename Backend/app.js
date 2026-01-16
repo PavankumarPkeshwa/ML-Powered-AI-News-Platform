@@ -34,7 +34,7 @@ const app = express();
 app.use(
   cors({
     origin: [
-      "https://agentic-ai-news-intelligence-platform.vercel.app",
+      "https://pavannewsai.vercel.app",
       "http://localhost:5173",
     ],
   })
