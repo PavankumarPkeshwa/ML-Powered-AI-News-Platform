@@ -14,6 +14,7 @@ from rag.vectordb import get_vector_db
 from rag.embedder import get_embedding_model
 from langchain_core.documents import Document
 import uuid
+from cache.build_news_cache import build_news_cache
 from datetime import datetime
 
 def ingest_url(url: str, category: str = "General") -> dict:
@@ -661,7 +662,7 @@ def collect_news_sync():
 
 
 # For scheduled/periodic collection
-async def periodic_news_collection(interval_hours: int = 6):
+async def periodic_news_collection(interval_hours: int = 2):
     """
     Periodically collect fresh news at specified intervals.
     Clears old articles and fetches new ones to keep database fresh.
@@ -679,8 +680,13 @@ async def periodic_news_collection(interval_hours: int = 6):
             
             # Clear old articles and collect fresh ones
             await auto_collect_news(quick_mode=False, clear_old=True)
-            
+
+            logger.info("📦 Rebuilding JSON cache from VectorDB...")
+            build_news_cache()
+            logger.info("✅ JSON cache refreshed")
+
             logger.info("✅ Periodic news refresh complete!")
+
         except Exception as e:
             logger.error(f"❌ Periodic collection failed: {str(e)}")
             import traceback
